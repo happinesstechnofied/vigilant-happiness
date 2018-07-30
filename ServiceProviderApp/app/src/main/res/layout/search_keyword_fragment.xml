@@ -1,0 +1,90 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtGenericDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutGallery"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:typeface="monospace"
+        android:padding="5dp"
+        android:text="Generic KeyWord"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp" />
+
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtGenericDetails"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/layoutSortDes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/inputKeyword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:paddingTop="5dp"
+                    android:theme="@style/TextLabel">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txtGenericKeyWord"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/key_word"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:typeface="serif"
+                        android:gravity="top|left"
+                        android:textColor="@color/title_color"
+                        android:textColorHint="@color/colorDark"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/bottomLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/activity_horizontal_margin">
+
+                <Button
+                    android:id="@+id/btnBack"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/sign_in_selector"
+                    android:text="Back"
+                    android:typeface="monospace"
+                    android:textColor="@color/colorWhite" />
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/sign_up_selector"
+                    android:text="Next"
+                    android:typeface="monospace"
+                    android:textColor="@color/colorWhite" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+</RelativeLayout>

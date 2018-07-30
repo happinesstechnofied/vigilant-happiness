@@ -1,0 +1,111 @@
+<resources>
+    <string name="app_name">VendorApp</string>
+    <string name="item_home">Home</string>
+    <string name="item_reply">Reply</string>
+    <string name="item_chat">Chat</string>
+    <string name="item_profile">Profile</string>
+    <string name="item_more">More</string>
+
+
+    <!--Pick Image-->
+    <string name="pick_image_from_gallery">PICK IMAGE FROM GALLERY</string>
+    <string name="text_images">%1$d Images</string>
+    <string name="text_button_done">Done</string>
+    <string name="text_title_activity_album">Select photos</string>
+    <string name="text_title_dialog_sort_by_album">Sort album by</string>
+    <string name="text_title_dialog_sort_by_photo">Sort photo by</string>
+    <string name="action_sort">Sort</string>
+
+
+    <!--more fragment-->
+    <string name="about">About App</string>
+    <string name="policy">Privacy Policy</string>
+    <string name="term">Terms and Condition</string>
+    <string name="share">Share App</string>
+    <string name="download">Download Our App</string>
+    <string name="rate">Rate Us</string>
+
+
+    <!--profile fragment-->
+    <string name="profile_name">Name</string>
+    <string name="profile_address">Address</string>
+    <string name="profile_pincode">Pincode</string>
+    <string name="profile_city">City</string>
+    <string name="profile_email">Email</string>
+    <string name="profile_number">Number</string>
+
+
+    <!--service creation-->
+    <string name="service_title">Service Title *</string>
+    <string name="tag_line">Tag Line *</string>
+    <string name="sort_des">Short Description *</string>
+    <string name="key_word">Generic KeyWord *</string>
+    <string name="opening_hours">Opening Hours *</string>
+    <string name="closing_hours">Closing Hours *</string>
+    <string name="mrp_price">MRP Price *</string>
+    <string name="sale_price">Sale Price *</string>
+    <string name="gallery_advice_first">You can add up to 10 photos</string>
+    <string name="gallery_advice_second">First photo of your selection will be cover photo</string>
+    <string name="vendor_name">Name *</string>
+    <string name="vendor_address">Address</string>
+    <string name="vendor_pincode">Pincode</string>
+    <string name="vendor_city">City</string>
+    <string name="vendor_email">E-mail *</string>
+    <string name="vendor_number">Mobile no *</string>
+    <string name="vendor_msg_0">An OTP will be sent and read if  given number is not verified</string>
+    <string name="vendor_msg_1">Verifying your number creates trust and increase your chances of getting the right deal.</string>
+    <string name="vendor_apartment">Apartment *</string>
+    <string name="vendor_location">Location *</string>
+
+
+    <!--question reply-->
+    <string name="reply_msg">Verify your answer before submit, answer not allowed to after submit.</string>
+    <string name="type_ans">Type your answer.</string>
+
+
+    <!--login xml-->
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+
+    <!--register xml-->
+    <string name="register_now">Register Now</string>
+    <string name="register_user_name">Enter your name</string>
+    <string name="register_email">Enter your e-mail id</string>
+    <string name="register_contact">Enter your mobile no</string>
+    <string name="register_password">Enter your password</string>
+    <string name="register_confirm_password">Confirm password</string>
+    <string name="register_user_photo">Upload profile picture</string>
+
+    <string name="forgot_msg">Please Enter Your Register Mobile No.</string>
+    <string name="title_activity_validation">Sign in</string>
+
+    <string name="new_pass_msg">Enter Your New Password.</string>
+    <string name="new_pass_btn">Create New</string>
+
+
+    <string name="sign_up_detil_msg">Enter Signup Detail.</string>
+    <string name="sign_up_detil_btn">Save</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+
+    <!--profile xml-->
+    <string name="update_profile">Update Profile</string>
+
+
+    <!--facebook social login xml-->
+    <string name="facebook_app_id">202010250512298</string>
+    <string name="fb_login_protocol_scheme">fb202010250512298</string>
+
+</resources>

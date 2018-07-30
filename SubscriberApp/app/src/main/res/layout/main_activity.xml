@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/app_bar" />
+
+    <RelativeLayout
+        android:id="@+id/searchBar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_below="@+id/toolbar">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:hint="@string/search_txt"
+            android:paddingLeft="10dp"
+            android:drawableRight="@drawable/ic_search_icon"
+            android:paddingRight="10dp"
+            android:background="@drawable/serach_background"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation"
+        android:layout_below="@+id/searchBar"
+        android:animateLayoutChanges="true">
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/imgPostAd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/navigation"
+        android:layout_margin="10dp"
+        android:visibility="invisible"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/ic_launcher"/>
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        app:itemIconTint="@color/nav_item_icons"
+        app:itemTextColor="@color/nav_item_titles"
+        app:menu="@menu/bottom_navigation_items" />
+</RelativeLayout>

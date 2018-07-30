@@ -1,0 +1,164 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+
+    <TextView
+        android:id="@+id/txtCategoryDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="Category Details"
+        android:textColor="@color/colorBlack"
+        android:textSize="18sp"
+        android:typeface="monospace" />
+
+    <RelativeLayout
+        android:id="@+id/mainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txtCategoryDetails"
+        android:layout_centerInParent="true"
+        android:background="@color/colorWhite">
+
+        <RelativeLayout
+            android:id="@+id/mainCategoryLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorWhite"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/txtCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:padding="2dp"
+                android:text="Category"
+                android:textColor="@color/colorDark"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtCategoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtCategory"
+                android:layout_marginLeft="15dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Select Category"
+                android:padding="2dp"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:typeface="serif" />
+
+            <ImageView
+                android:id="@+id/imgRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_right" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/txtCategoryName"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorBlack"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/subCategoryLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mainCategoryLayout"
+            android:background="@color/colorWhite"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/txtSubCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:padding="2dp"
+                android:text="Sub-Category"
+                android:textColor="@color/colorDark"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtSubCategoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtSubCategory"
+                android:layout_marginLeft="15dp"
+                android:hint="Select Sub-Category"
+                android:padding="2dp"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="16sp"
+                android:typeface="serif" />
+
+            <ImageView
+                android:id="@+id/imgRight0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_right" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/txtSubCategoryName"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/colorBlack"></View>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottomLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/subCategoryLayout"
+            android:padding="@dimen/activity_horizontal_margin">
+
+            <Button
+                android:id="@+id/btnBack"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/sign_in_selector"
+                android:text="Back"
+                android:textColor="@color/colorWhite"
+                android:typeface="monospace"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/sign_up_selector"
+                android:text="Next"
+                android:textColor="@color/colorWhite"
+                android:typeface="monospace" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

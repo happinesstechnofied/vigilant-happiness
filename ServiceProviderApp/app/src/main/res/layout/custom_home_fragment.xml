@@ -1,0 +1,277 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fresco="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="4dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight=".1"
+                android:background="@color/white_trans"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                card_view:cardCornerRadius="10dp"
+                card_view:cardElevation="3dp"
+                card_view:cardUseCompatPadding="false">
+
+                <RelativeLayout
+                    android:id="@+id/layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white_trans">
+
+                    <com.facebook.drawee.view.SimpleDraweeView
+                        android:id="@+id/vendorBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        fresco:placeholderImage="@drawable/ic_placeholder"
+                        fresco:viewAspectRatio="2.33" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:alpha="0.5"
+                        android:layout_above="@+id/layoutDescription"
+                        android:background="@drawable/gradient_background"
+                        android:scaleType="fitXY" />
+
+                    <RelativeLayout
+                        android:id="@+id/layoutVendorStatus"
+                        android:layout_width="120dp"
+                        android:layout_height="30dp"
+                        android:background="@color/colorPrimaryDarkTrans">
+
+                        <TextView
+                            android:id="@+id/txtVendorStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:text="Pending"
+                            android:textColor="@color/white_trans" />
+
+                    </RelativeLayout>
+
+
+                    <TextView
+                        android:id="@+id/txtRating"
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:textColor="@color/colorWhite"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/ic_vendor_rating"
+                        android:background="@drawable/rate_border"
+                        android:layout_alignParentRight="true"
+                        android:padding="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="4.5"/>
+
+
+                    <TextView
+                        android:id="@+id/txtCategoryTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="3dp"
+                        android:text="Saloon and Spa"
+                        android:textStyle="bold"
+                        android:typeface="serif"
+                        android:layout_below="@+id/layoutVendorStatus"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <RelativeLayout
+                        android:id="@+id/mainCateLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/subCateLayout">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:id="@+id/imgCateImage"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight=".1"
+                            app:civ_border_color="@color/colorWhite"
+                            app:civ_border_width="1dp"
+                            app:civ_shadow="true"
+                            app:civ_shadow_color="@color/colorWhite"
+                            app:civ_shadow_radius="2" />
+
+                        <TextView
+                            android:id="@+id/txtCateTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/imgCateImage"
+                            android:padding="5dp"
+                            android:text="Saloon"
+                            android:textStyle="bold"
+                            android:typeface="monospace"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/subCateLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/layoutVendorContact">
+
+                        <com.mikhaellopez.circularimageview.CircularImageView
+                            android:id="@+id/imgSubCateImage"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="25dp"
+                            android:layout_weight=".1"
+                            app:civ_border_color="@color/colorWhite"
+                            app:civ_border_width="1dp"
+                            app:civ_shadow="true"
+                            app:civ_shadow_color="@color/colorWhite"
+                            app:civ_shadow_radius="2" />
+
+                        <TextView
+                            android:id="@+id/txtSubCateTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toRightOf="@+id/imgSubCateImage"
+                            android:padding="5dp"
+                            android:text="Hair Saloon"
+                            android:textStyle="bold"
+                            android:typeface="monospace"
+                            android:textColor="@color/colorWhite"
+                            android:textSize="15sp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutVendorContact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@+id/priceLayout">
+
+                        <ImageView
+                            android:id="@+id/imgContact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_marginLeft="15dp"
+                            android:src="@drawable/ic_vendor_number"/>
+
+                        <TextView
+                            android:id="@+id/txtVendorNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorWhite"
+                            android:layout_toRightOf="@+id/imgContact"
+                            android:text="9099279889"
+                            android:layout_centerVertical="true"/>
+
+
+                        <TextView
+                            android:id="@+id/txtVendorName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_alignParentRight="true"
+                            android:textStyle="bold"
+                            android:layout_marginRight="15dp"
+                            android:textColor="@color/colorWhite"
+                            android:text="Piyush"
+                            android:layout_centerVertical="true"/>
+
+                        <ImageView
+                            android:id="@+id/imgUser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/txtVendorName"
+                            android:layout_marginLeft="15dp"
+                            android:src="@drawable/ic_vendor_name"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/priceLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/txtMRP"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="₹1800"
+                            android:typeface="serif"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorWhite" />
+
+                        <View
+                            android:layout_width="35dp"
+                            android:layout_height="1dp"
+                            android:layout_marginLeft="7dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@color/colorWhite"></View>
+
+                        <TextView
+                            android:id="@+id/txtSellingPrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/txtMRP"
+                            android:layout_marginLeft="5dp"
+                            android:text="₹1200"
+                            android:typeface="serif"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorWhite" />
+
+                        <TextView
+                            android:id="@+id/txtSavePrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_below="@+id/txtMRP"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:text="You Save : ₹600"
+                            android:typeface="serif"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorWhite" />
+
+
+                    </RelativeLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+
+</RelativeLayout>

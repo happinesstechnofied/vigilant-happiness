@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "109956951623",
+    "firebase_url": "https://phonic-presence-188413.firebaseio.com",
+    "project_id": "phonic-presence-188413",
+    "storage_bucket": "phonic-presence-188413.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109956951623:android:cba8f2e5725a3786",
+        "android_client_info": {
+          "package_name": "com.vendorprovider"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109956951623-ak9ljv65blb625sf60h9jnl5ia0regd1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vendorprovider",
+            "certificate_hash": "806c94c41c6ec6a610d035e508911b471593baa5"
+          }
+        },
+        {
+          "client_id": "109956951623-l0rn06v2censdfh6g5ghtr407ijig827.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCug1FAZutI1lf_iavFugsG9WRIzalhoK4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109956951623-l0rn06v2censdfh6g5ghtr407ijig827.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

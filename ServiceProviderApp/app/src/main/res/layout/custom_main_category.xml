@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/layoutRateUs"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/imgCateImage"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight=".1"
+            android:src="@drawable/ic_placeholder"
+            app:civ_border_color="@color/white_trans"
+            app:civ_border_width="1dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="@color/colorDark"
+            app:civ_shadow_radius="2" />
+
+        <TextView
+            android:id="@+id/txtCategoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/imgCateImage"
+            android:text="@string/rate"
+            android:textColor="@color/colorDark"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/rateusRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_right"
+            android:visibility="visible" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/rateusRight"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorBlack"></View>
+    </RelativeLayout>
+
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0288d1</color>
+    <color name="colorPrimaryDark">#0288d1</color>
+    <color name="colorPrimaryDarkTrans">#0288d1</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorBlack">#212121</color>
+    <color name="colorDark">#b1b1b1</color>
+    <color name="colorDarkBG">#d6d6d6</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="mainColor">#0b4569</color>
+
+    <!--loading bar-->
+    <color name="kprogresshud_default_color">#212121</color>
+    <color name="kprogresshud_grey_color">#449E9E9E</color>
+
+
+    <color name="editFocused">#fbc02d</color>
+    <color name="editPressed">#daa92f</color>
+
+    <color name="btnFocused">#039be5</color>
+    <color name="btnPressed">#0288d1</color>
+
+
+    <!--Bottom Icon Highlight-->
+    <color name="white">#fbc02d</color>
+    <color name="white_trans">#FFFFFF</color>
+
+    <!--Bottom Title Highlight-->
+    <color name="title_color">#212121</color>
+    <color name="title_trans">#212121</color>
+
+
+    <!--login btn color-->
+    <color name="sign_in_focused">#039be5</color>
+    <color name="sign_in_pressed">#0288d1</color>
+
+    <color name="sign_up_focused">#fbc02d</color>
+    <color name="sign_up_pressed">#daa92f</color>
+
+    <!--stepper liner-->
+    <color name="stpi_default_circle_color">#b3bdc2</color>
+    <color name="stpi_default_primary_color">#00b47c</color>
+    <color name="stpi_default_line_color">#b3bdc2</color>
+    <color name="stpi_default_text_color">#000</color>
+
+</resources>
