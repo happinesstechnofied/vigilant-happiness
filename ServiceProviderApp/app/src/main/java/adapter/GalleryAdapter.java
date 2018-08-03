@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -77,7 +79,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
         zDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         zDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         zDialog.setContentView(R.layout.zoom_product_dialog);
-        AppCompatButton btnClose = (AppCompatButton)zDialog.findViewById(R.id.btnClose);
+        Button btnClose = (Button)zDialog.findViewById(R.id.btnClose);
         TouchImageView imageView = (TouchImageView)zDialog.findViewById(R.id.imageView);
         Picasso.with(context).load(i).placeholder(R.drawable.ic_placeholder).error(R.drawable.ic_placeholder).into(imageView);
         btnClose.setOnClickListener(new View.OnClickListener() {

@@ -29,16 +29,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.photopicker.activity.PickImageActivity;
+import com.vendorprovider.MainActivity;
 import com.vendorprovider.R;
 import com.vendorprovider.ServiceCreationActivity;
 import com.vendorprovider.ViewServicesActivity;
 
+import org.json.JSONArray;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import adapter.DisplayGalleryAdapter;
 import adapter.GalleryAdapter;
 import model.GalleryImage;
+import model.ServicesData;
+import util.AppConstants;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -54,7 +61,7 @@ public class ServiceFragment extends Fragment {
     Button btnNext;
     Button btnBack;
     ImageView imgGalleryAd;
-    TextView txtImageCount;
+    public static TextView txtImageCount;
     TextInputEditText txtServiceTitle, txtTagLine;
     String serviceTitle, serviceTagLine, serviceImages;
     SharedPreferences preferences;
@@ -63,6 +70,9 @@ public class ServiceFragment extends Fragment {
     private GridLayoutManager lLayout;
     RecyclerView galleryListView;
     ArrayList<GalleryImage> galleryImages = new ArrayList<>();
+    ArrayList<GalleryImage> galleryPics = new ArrayList<>();
+    public static ArrayList<String> addItemPic = new ArrayList<>();
+    JSONArray finalData;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,6 +99,19 @@ public class ServiceFragment extends Fragment {
         if (checkEditMode.equals("Edit")) {
             txtServiceTitle.setText(ViewServicesActivity.arrayList.get(position).getTitle());
             txtTagLine.setText(ViewServicesActivity.arrayList.get(position).getTagLine());
+            galleryPics.addAll(ViewServicesActivity.galleryImages);
+            if (galleryPics.size() == 0) {
+                galleryListView.setVisibility(View.GONE);
+            }else{
+                txtImageCount.setVisibility(View.VISIBLE);
+                txtImageCount.setText(""+galleryPics.size());
+                galleryListView.setVisibility(View.VISIBLE);
+                DisplayGalleryAdapter rcAdapter = new DisplayGalleryAdapter(getContext(), galleryPics);
+                lLayout = new GridLayoutManager(getContext(), 4);
+                galleryListView.setHasFixedSize(true);
+                galleryListView.setLayoutManager(lLayout);
+                galleryListView.setAdapter(rcAdapter);
+            }
         }
 
         btnNext.setOnClickListener(new View.OnClickListener() {
@@ -113,8 +136,10 @@ public class ServiceFragment extends Fragment {
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("service_title", serviceTitle);
                     editor.putString("tag_line", serviceTagLine);
-                    //editor.putString("images", pathList.toString());
                     editor.commit();
+                    for (int i= 0; i<galleryPics.size(); i++){
+                        addItemPic.add(""+galleryPics.get(i).getImageId());
+                    }
                     ServiceCreationActivity.mViewPager.setCurrentItem(2, true);
                 }
             }
@@ -188,24 +213,29 @@ public class ServiceFragment extends Fragment {
                 for(int i=0;i<pathList.size();i++) {
                     sb.append("Photo"+(i+1)+":"+pathList.get(i));
                     sb.append("\n");
-                    GalleryImage image=new GalleryImage();
-                    image.setImageMedium(pathList.get(i));
-                    galleryImages.add(image);
                 }
-                txtImageCount.setVisibility(View.VISIBLE);
-                txtImageCount.setText(""+pathList.size());
-
             }
-        }
-        if (galleryImages.size() == 0) {
-            galleryListView.setVisibility(View.GONE);
-        }else{
-            galleryListView.setVisibility(View.VISIBLE);
-            DisplayGalleryAdapter rcAdapter = new DisplayGalleryAdapter(getContext(), galleryImages);
-            lLayout = new GridLayoutManager(getContext(), 4);
-            galleryListView.setHasFixedSize(true);
-            galleryListView.setLayoutManager(lLayout);
-            galleryListView.setAdapter(rcAdapter);
+            try {
+                finalData = PickImageActivity.getImages;
+                TypeReference<ArrayList<GalleryImage>> typeRef = new TypeReference<ArrayList<GalleryImage>>() {
+                };
+                galleryImages = AppConstants.getMapper().readValue(finalData.toString(), typeRef);
+                galleryPics.addAll(galleryImages);
+                txtImageCount.setVisibility(View.VISIBLE);
+                txtImageCount.setText(""+galleryPics.size());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (galleryPics.size() == 0) {
+                galleryListView.setVisibility(View.GONE);
+            }else{
+                galleryListView.setVisibility(View.VISIBLE);
+                DisplayGalleryAdapter rcAdapter = new DisplayGalleryAdapter(getContext(), galleryPics);
+                lLayout = new GridLayoutManager(getContext(), 4);
+                galleryListView.setHasFixedSize(true);
+                galleryListView.setLayoutManager(lLayout);
+                galleryListView.setAdapter(rcAdapter);
+            }
         }
     }
 }

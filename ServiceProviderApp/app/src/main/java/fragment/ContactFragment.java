@@ -54,6 +54,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import adapter.DisplayGalleryAdapter;
 import kprogresshud.KProgressHUD;
 import services.Services;
 
@@ -282,8 +283,12 @@ public class ContactFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("Service", "create_service");
-
+                if (checkEditMode.equals("Edit")) {
+                    params.put("Service", "update_service");
+                    params.put("service_id",String.valueOf(ViewServicesActivity.arrayList.get(position).getServiceId()));
+                }else{
+                    params.put("Service", "create_service");
+                }
                 if (preferences.getString("user_data", "") != null && !preferences.getString("user_data", "").equalsIgnoreCase("")) {
                     try {
                         JSONObject jObj = new JSONObject(preferences.getString("user_data", ""));
@@ -304,12 +309,14 @@ public class ContactFragment extends Fragment {
                 params.put("sub_category_name", sub_category_name);
                 params.put("service_title", service_title);
                 params.put("tag_line", tag_line);
+                params.put("image_add", android.text.TextUtils.join(",", ServiceFragment.addItemPic));
+                params.put("image_remove", android.text.TextUtils.join(",", DisplayGalleryAdapter.removeItemPic));
 
-                int image_counter = 0;
+                /*int image_counter = 0;
                 do {
                     params.put("image_" + image_counter, preferences.getString("image_" + image_counter, ""));
                     image_counter++;
-                } while (!preferences.getString("image_" + image_counter, "").equalsIgnoreCase(""));
+                } while (!preferences.getString("image_" + image_counter, "").equalsIgnoreCase(""));*/
 
                 params.put("sort_description", sort_description);
                 params.put("opening_hours", opening_hours);
@@ -348,7 +355,7 @@ public class ContactFragment extends Fragment {
     }
 
     private boolean isValidPhoneNumber(CharSequence phoneNumber) {
-        if (!TextUtils.isEmpty(phoneNumber)) {
+           if (!TextUtils.isEmpty(phoneNumber)) {
             return Patterns.PHONE.matcher(phoneNumber).matches();
         }
         return false;

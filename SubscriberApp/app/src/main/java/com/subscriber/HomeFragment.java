@@ -1,6 +1,8 @@
 package com.subscriber;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -124,7 +126,6 @@ public class HomeFragment extends Fragment {
         } else {
             Toast.makeText(getContext(), "No Internet Connection!", Toast.LENGTH_SHORT).show();
         }
-
         return view;
     }
 
@@ -204,9 +205,9 @@ public class HomeFragment extends Fragment {
         private LayoutInflater inflater;
         private ArrayList<ServicesData> pData;
 
-        public FeatureServiceViewPager(ArrayList<ServicesData> pData) {
+        public FeatureServiceViewPager(Activity context, ArrayList<ServicesData> pData) {
             this.pData = pData;
-            inflater = getActivity().getLayoutInflater();
+            inflater = context.getLayoutInflater();
         }
 
         @Override
@@ -245,8 +246,6 @@ public class HomeFragment extends Fragment {
             }
         }
     }
-
-
     private void GetSearchServiceData() {
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, Services.GET_SERVICE_URL,
@@ -458,7 +457,7 @@ public class HomeFragment extends Fragment {
 
                             arrayList = AppConstants.getMapper().readValue(jsonArray.toString(), typeRef);
                             //Collections.shuffle(arrayList);
-                            ad = new FeatureServiceViewPager(arrayList);
+                            ad = new FeatureServiceViewPager(getActivity(),arrayList);
                             mViewPager.setAdapter(ad);
                             pageChange_Listener = new DetailOnPageChangeListener();
                             mViewPager.setOnPageChangeListener(pageChange_Listener);

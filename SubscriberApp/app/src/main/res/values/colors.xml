@@ -15,8 +15,8 @@
     <color name="kprogresshud_grey_color">#449E9E9E</color>
 
 
-    <color name="editFocused">#fbc02d</color>
-    <color name="editPressed">#daa92f</color>
+    <color name="editFocused">#0288d1</color>
+    <color name="editPressed">#0288d1</color>
 
     <color name="btnFocused">#039be5</color>
     <color name="btnPressed">#0288d1</color>
@@ -35,8 +35,8 @@
     <color name="sign_in_focused">#039be5</color>
     <color name="sign_in_pressed">#0288d1</color>
 
-    <color name="sign_up_focused">#fbc02d</color>
-    <color name="sign_up_pressed">#daa92f</color>
+    <color name="sign_up_focused">#039be5</color>
+    <color name="sign_up_pressed">#0288d1</color>
 
     <!--stepper liner-->
     <color name="stpi_default_circle_color">#b3bdc2</color>

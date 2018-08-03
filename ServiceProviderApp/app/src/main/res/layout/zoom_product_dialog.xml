@@ -17,12 +17,13 @@
             android:background="@color/colorWhite"
             android:padding="5dp" />
 
-        <android.support.v7.widget.AppCompatButton
+        <Button
             android:id="@+id/btnClose"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/ic_close_dialog"
+            android:clickable="true"
             android:padding="5dp" />
 
         <imagezoom.TouchImageView

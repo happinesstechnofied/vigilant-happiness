@@ -44,7 +44,6 @@ import services.Services;
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    ImageView imgPostAd;
     TextView tvHeader;
     ImageView imgLocation;
     RelativeLayout searchBar;
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     RequestQueue requestQueue;
     public static JSONArray finalData;
     SharedPreferences preferences;
+    public static ImageView imgLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,38 +78,38 @@ public class MainActivity extends AppCompatActivity {
                         switch (item.getItemId()) {
                             case R.id.action_home:
                                 selectedFragment = HomeFragment.newInstance();
-                                imgPostAd.setVisibility(View.GONE);
                                 tvHeader.setText("Your Location");
                                 imgLocation.setVisibility(View.VISIBLE);
                                 searchBar.setVisibility(View.VISIBLE);
+                                imgLogout.setVisibility(View.INVISIBLE);
                                 break;
                             case R.id.action_reply:
                                 selectedFragment = ReplyFragment.newInstance();
-                                imgPostAd.setVisibility(View.GONE);
                                 tvHeader.setText("Reply");
                                 imgLocation.setVisibility(View.GONE);
                                 searchBar.setVisibility(View.GONE);
+                                imgLogout.setVisibility(View.INVISIBLE);
                                 break;
                             case R.id.action_chat:
                                 selectedFragment = ChatFragment.newInstance();
-                                imgPostAd.setVisibility(View.GONE);
                                 tvHeader.setText("Chat");
                                 imgLocation.setVisibility(View.GONE);
                                 searchBar.setVisibility(View.GONE);
+                                imgLogout.setVisibility(View.INVISIBLE);
                                 break;
                             case R.id.action_profile:
                                 selectedFragment = ProfileFragment.newInstance();
-                                imgPostAd.setVisibility(View.GONE);
                                 tvHeader.setText("Profile");
                                 imgLocation.setVisibility(View.GONE);
                                 searchBar.setVisibility(View.GONE);
+                                imgLogout.setVisibility(View.VISIBLE);
                                 break;
                             case R.id.action_more:
                                 selectedFragment = MoreFragment.newInstance();
-                                imgPostAd.setVisibility(View.GONE);
                                 tvHeader.setText("More");
                                 imgLocation.setVisibility(View.GONE);
                                 searchBar.setVisibility(View.GONE);
+                                imgLogout.setVisibility(View.INVISIBLE);
                                 break;
                         }
 
@@ -142,10 +142,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
-        imgPostAd = (ImageView) findViewById(R.id.imgPostAd);
         tvHeader = (TextView) findViewById(R.id.tvHeader);
         imgLocation = (ImageView) findViewById(R.id.imgLocation);
         searchBar = (RelativeLayout) findViewById(R.id.searchBar);
+        imgLogout = (ImageView) findViewById(R.id.imgLogout);
     }
 
     @Override

@@ -49,7 +49,7 @@ public class ViewServicesActivity extends AppCompatActivity {
     int position;
     JSONArray ServiceData;
     public static ArrayList<ServicesData> arrayList = new ArrayList<>();
-    ArrayList<GalleryImage> galleryImages = new ArrayList<>();
+    public static ArrayList<GalleryImage> galleryImages = new ArrayList<>();
     public static ArrayList<Feature> features = null;
     SharedPreferences preferences;
 

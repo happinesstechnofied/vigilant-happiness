@@ -57,6 +57,9 @@
     <string name="vendor_apartment">Apartment *</string>
     <string name="vendor_location">Location *</string>
 
+    <!--success service message-->
+    <string name="success_msg">Service successfully submitted.</string>
+
 
     <!--question reply-->
     <string name="reply_msg">Verify your answer before submit, answer not allowed to after submit.</string>

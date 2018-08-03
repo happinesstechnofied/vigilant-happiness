@@ -17,8 +17,8 @@ public class Services {
     public static String FORGOT_RESEND_OTP_URL = "http://orbrixtechnologies.com/services/api/forgot_password_sp.php";
     public static String CHANGE_FORGOT_URL = "http://orbrixtechnologies.com/services/api/forgot_password_sp.php";
     public static String SIGN_SOCIAL_URL = "http://orbrixtechnologies.com/services/api/sign_up_sp.php";
-    public static String SERVICE_CREATION_URL = "http://orbrixtechnologies.com/services/api/service_creation.php";
+    public static String SERVICE_CREATION_URL = "http://orbrixtechnologies.com/services/api/service_creation_ver_1_0.php";
     public static String GET_SERVICE_URL = "http://orbrixtechnologies.com/services/api/service_apis.php";
-    public static String GET_SERVICE_CREATION = "http://orbrixtechnologies.com/services/api/service_creation.php";
+    public static String GET_SERVICE_CREATION = "http://orbrixtechnologies.com/services/api/service_creation_ver_1_0.php";
 
 }

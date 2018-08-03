@@ -58,6 +58,7 @@ import com.vendorprovider.LoginActivity;
 import com.vendorprovider.R;
 import com.vendorprovider.ServiceCreationActivity;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -68,6 +69,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import kprogresshud.KProgressHUD;
 import services.Services;
@@ -102,6 +104,9 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
     private static final int READ_STORAGE_CODE=1001;
     private static final int WRITE_STORAGE_CODE=1002;
     RequestQueue requestQueue;
+    SharedPreferences preferences;
+    public static JSONArray getImages;
+    ArrayList<String> listString;
 
     private class GetItemAlbum extends AsyncTask<Void, Void, String> {
         private GetItemAlbum() {
@@ -197,7 +202,8 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
         this.setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         this.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         this.getSupportActionBar().setTitle(R.string.text_title_activity_album);
-
+        preferences = PreferenceManager.getDefaultSharedPreferences(PickImageActivity.this);
+        this.listItemSelect.clear();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
 //            this.limitImageMax = bundle.getInt(KEY_LIMIT_MAX_IMAGE, 10);
@@ -504,7 +510,7 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
         if (v.getId() == R.id.btnDone) {
 
 
-            ArrayList<String> listString = getListString(this.listItemSelect);
+            listString = getListString(this.listItemSelect);
             if (listString.size() >= this.limitImageMin) {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(PickImageActivity.this);
                 SharedPreferences.Editor editor = preferences.edit();
@@ -517,7 +523,6 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
                 }
                 editor.commit();
                 done(listString);
-             //   setSelectedImages();
             }
             else
             {
@@ -526,7 +531,7 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
         }
     }
 
-    /*private void setSelectedImages() {
+    private void setSelectedImages() {
 
         StringRequest postRequest = new StringRequest(Request.Method.POST, Services.GET_SERVICE_CREATION,
                 new Response.Listener<String>() {
@@ -534,16 +539,13 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
                     public void onResponse(String response) {
                         try {
                             JSONObject jObj = new JSONObject(response.toString());
-                            String status = jObj.getString("status");
-                            if (status.matches("success")) {
-                                //starting the profile activity
-                                ServiceCreationActivity.mViewPager.setCurrentItem(6, true);
-                            } else {
-                                String failed = jObj.getString("message");
-                                Toast.makeText(PickImageActivity.this, failed, LENGTH_SHORT).show();
-                            }
+                            JSONArray jsonArray = jObj.getJSONArray("gallery_images");
+                            getImages = jsonArray;
+                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(PickImageActivity.this, "Server Not Response! Please Try Again.", LENGTH_SHORT).show();
+                            finish();
                         }
                     }
                 },
@@ -552,7 +554,8 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        Toast.makeText(PickImageActivity.this, error.toString(), LENGTH_SHORT).show();
+                        Toast.makeText(PickImageActivity.this, "Server Error! Please Try Again.", LENGTH_SHORT).show();
+                        finish();
                     }
                 }
         ) {
@@ -560,28 +563,43 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Service", "upload_images");
-                params.put("user_id", "16");
 
+                if (preferences.getString("user_data", "") != null && !preferences.getString("user_data", "").equalsIgnoreCase("")) {
+                    try {
+                        JSONObject jObj = new JSONObject(preferences.getString("user_data", ""));
+                        params.put("user_id", jObj.getString("user_id"));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    /*Intent intent = new Intent(getContext(), LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);*/
+                }
 
-
-                int image_counter = 0;
-                do {
-                    params.put("image_" + image_counter, preferences.getString("image_" + image_counter, ""));
-                    image_counter++;
-                } while (!preferences.getString("image_" + image_counter, "").equalsIgnoreCase(""));
-
-
+                Bitmap bitmap;
+                for(int counter=0; counter<listString.size() ;counter++){
+                    PickImageActivity.this.listItemSelect.get(counter).getPathFile();
+                    bitmap = BitmapFactory.decodeFile(PickImageActivity.this.listItemSelect.get(counter).getPathFile());
+                    getEncoded64ImageStringFromBitmap(bitmap);
+                    params.put("image_" + counter, getEncoded64ImageStringFromBitmap(bitmap));
+                }
                 return params;
             }
         };
         requestQueue = Volley.newRequestQueue(PickImageActivity.this);
         postRequest.setShouldCache(false);
-        postRequest.setRetryPolicy(new DefaultRetryPolicy(
+        /*postRequest.setRetryPolicy(new DefaultRetryPolicy(
                 0,
                 DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));*/
+        postRequest.setRetryPolicy(new DefaultRetryPolicy(
+                DefaultRetryPolicy.DEFAULT_TIMEOUT_MS * 2,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         requestQueue.add(postRequest);
-    }*/
+    }
 
     public String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -621,7 +639,8 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
         Intent mIntent = new Intent();
         setResult(Activity.RESULT_OK, mIntent);
         mIntent.putStringArrayListExtra(KEY_DATA_RESULT, listString);
-        finish();
+        setSelectedImages();
+
     }
 
     ArrayList<String> getListString(ArrayList<ImageModel> listItemSelect) {

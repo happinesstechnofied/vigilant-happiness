@@ -12,12 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import com.photopicker.model.ImageModel;
 import com.squareup.picasso.Picasso;
 import com.vendorprovider.R;
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.List;
+
+import fragment.ServiceFragment;
 import imagezoom.TouchImageView;
 import model.GalleryImage;
 
@@ -28,15 +32,17 @@ import model.GalleryImage;
 public class DisplayGalleryAdapter extends RecyclerView.Adapter<DisplayGalleryAdapter.MyViewHolder> {
 
     private List<GalleryImage> saveList;
+    public static ArrayList<String> removeItemPic = new ArrayList<>();
     Context context;
-    Bitmap bitmap;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageItem;
+        public ImageView btnDelete;
 
         public MyViewHolder(View view) {
             super(view);
             imageItem = (ImageView) view.findViewById(R.id.imageItem);
+            btnDelete = (ImageView) view.findViewById(R.id.btnDelete);
         }
     }
     public DisplayGalleryAdapter(Context context, List<GalleryImage> sList) {
@@ -55,15 +61,21 @@ public class DisplayGalleryAdapter extends RecyclerView.Adapter<DisplayGalleryAd
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final GalleryImage nData = saveList.get(position);
-        bitmap = BitmapFactory.decodeFile(nData.getImageMedium());
-        getEncoded64ImageStringFromBitmap(bitmap);
         holder.imageItem.buildDrawingCache(true);
-        bitmap = holder.imageItem.getDrawingCache(true);
-        Picasso.with(context).load(getEncoded64ImageStringFromBitmap(bitmap).toString()).placeholder(R.drawable.ic_placeholder).error(R.drawable.ic_placeholder).into(holder.imageItem);
+        Picasso.with(context).load(nData.getImageMedium()).placeholder(R.drawable.ic_placeholder).error(R.drawable.ic_placeholder).into(holder.imageItem);
         holder.imageItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //showProduct(uri);
+                showProduct(nData.getImageMedium());
+            }
+        });
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveList.remove(position);
+                removeItemPic.add(""+nData.getImageId());
+                notifyDataSetChanged();
+                ServiceFragment.txtImageCount.setText(""+saveList.size());
             }
         });
     }
@@ -72,14 +84,14 @@ public class DisplayGalleryAdapter extends RecyclerView.Adapter<DisplayGalleryAd
     public int getItemCount() {
         return saveList.size();
     }
-    private void showProduct(Uri i) {
+    private void showProduct(String imgUrl) {
         final Dialog zDialog = new Dialog(context);
         zDialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
         zDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         zDialog.setContentView(R.layout.zoom_product_dialog);
-        AppCompatButton btnClose = (AppCompatButton)zDialog.findViewById(R.id.btnClose);
+        Button btnClose = (Button)zDialog.findViewById(R.id.btnClose);
         TouchImageView imageView = (TouchImageView)zDialog.findViewById(R.id.imageView);
-        Picasso.with(context).load(i).placeholder(R.drawable.ic_placeholder).error(R.drawable.ic_placeholder).into(imageView);
+        Picasso.with(context).load(imgUrl).placeholder(R.drawable.ic_placeholder).error(R.drawable.ic_placeholder).into(imageView);
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,13 +99,5 @@ public class DisplayGalleryAdapter extends RecyclerView.Adapter<DisplayGalleryAd
             }
         });
         zDialog.show();
-    }
-    public String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
-        byte[] byteFormat = stream.toByteArray();
-        String imgString = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
-
-        return imgString;
     }
 }

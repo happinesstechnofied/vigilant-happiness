@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -16,12 +15,18 @@
         android:textSize="18sp"
         android:typeface="monospace" />
 
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txtServiceDetails"
+        android:scrollbars="none">
+
+
 
     <RelativeLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/txtServiceDetails">
+        android:layout_height="match_parent">
 
 
         <RelativeLayout
@@ -161,14 +166,15 @@
                 android:id="@+id/galleryLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_below="@+id/layoutGallery">
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:divider="@null"
-                    android:paddingTop="5dp"
+                    android:padding="5dp"
+                    android:layout_centerHorizontal="true"
                     android:dividerHeight="5dp"
                     android:id="@+id/galleryRecyclerView">
                 </android.support.v7.widget.RecyclerView>
@@ -205,4 +211,5 @@
             </RelativeLayout>
         </RelativeLayout>
     </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>
