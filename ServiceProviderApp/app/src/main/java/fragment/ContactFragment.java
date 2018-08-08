@@ -1,15 +1,20 @@
 package fragment;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -34,6 +39,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.connection.ConnectionDetector;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import com.heetch.countrypicker.Country;
 import com.heetch.countrypicker.CountryPickerCallbacks;
 import com.heetch.countrypicker.CountryPickerDialog;
@@ -126,6 +134,8 @@ public class ContactFragment extends Fragment {
         cd = new ConnectionDetector(getContext());
         isInternetPresent = cd.isConnectingToInternet();
 
+        final LocationManager manager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+
         btnSubmit = (Button) view.findViewById(R.id.btnSubmit);
         btnBack = (Button) view.findViewById(R.id.btnBack);
         txtVendorName = (TextInputEditText) view.findViewById(R.id.txtVendorName);
@@ -174,7 +184,24 @@ public class ContactFragment extends Fragment {
         if (checkEditMode.equals("Edit")) {
             txtVendorName.setText(ViewServicesActivity.arrayList.get(position).getContactName());
             txtVendorApartment.setText(ViewServicesActivity.arrayList.get(position).getAppartment());
-            txtVendorNumber.setText(ViewServicesActivity.arrayList.get(position).getMobileNo());
+
+            PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+            try {
+                // phone must begin with '+'
+                Phonenumber.PhoneNumber numberProto = phoneUtil.parse(ViewServicesActivity.arrayList.get(position).getMobileNo().toString(), "");
+
+                txtVendorNumber.setText(String.valueOf(numberProto.getNationalNumber()));
+                countryCode.setText("+" + numberProto.getCountryCode());
+                country = countryPicker.getCountryFromDialCode(String.valueOf(numberProto.getCountryCode()));
+                countryFlag.setImageDrawable(getResources().getDrawable(Utils.getMipmapResId(getContext(),
+                        country.getIsoCode().toLowerCase(Locale.ENGLISH) + "_flag")));
+            } catch (NumberParseException e) {
+                System.err.println("NumberParseException was thrown: " + e.toString());
+            }
+
+
+
+
             txtVendorEmail.setText(ViewServicesActivity.arrayList.get(position).getEmail());
             txtVendorAddress.setText(ViewServicesActivity.arrayList.get(position).getAddress());
             txtVendorCity.setText(ViewServicesActivity.arrayList.get(position).getCity());
@@ -184,7 +211,15 @@ public class ContactFragment extends Fragment {
         btnLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), MapLocationActivity.class));
+                if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    buildAlertMessageNoGps();
+                }else {
+                    if (isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                        startActivity(new Intent(getContext(), MapLocationActivity.class));
+                    } else {
+                        requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, READ_STORAGE_CODE);
+                    }
+                }
             }
         });
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -380,5 +415,24 @@ public class ContactFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         menu.findItem(R.id.action_more).setVisible(true);
         menu.findItem(R.id.action_logout).setVisible(false);
+    }
+
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Your GPS seems to be disabled, Do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
 }

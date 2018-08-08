@@ -107,6 +107,15 @@ public class CountryPickerDialog extends AppCompatDialog {
         return null;
     }
 
+    public Country getCountryFromDialCode(String dialCode) {
+        for (int i = 0; i < countries.size(); i++) {
+            if (countries.get(i).getDialingCode().equals(dialCode.toUpperCase())) {
+                return countries.get(i);
+            }
+        }
+        return null;
+    }
+
     public Country getCountryByLocale(@NonNull Locale locale) {
         String countryIsoCode = locale.getISO3Country().substring(0, 2).toLowerCase();
         return getCountryFromIsoCode(countryIsoCode);

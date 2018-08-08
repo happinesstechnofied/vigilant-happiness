@@ -413,7 +413,7 @@ public class LoginActivity extends AppCompatActivity {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Service", "login");
-                params.put("mobile_no", mobile_no);
+                params.put("mobile_no", countryCode.getText().toString()+mobile_no);
                 params.put("password", password);
                 params.put("device_id", "1234567890");
                 params.put("device_type", "1");

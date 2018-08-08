@@ -120,9 +120,9 @@ public class CategoriesActivity extends AppCompatActivity {
                                 customDialog();
                             } else {
                                 CategoryFragment.txtSubCategoryName.setText(categoriesList.get(position).getParentCatName());
-                                editor.commit();
                                 onBackPressed();
                             }
+                            editor.commit();
                         }
                     }
                 })
@@ -246,8 +246,8 @@ public class CategoriesActivity extends AppCompatActivity {
                     editor.putString("sub_category_name", txtCategory.getText().toString());
                     CategoryFragment.txtSubCategoryName.setText(txtCategory.getText().toString());
                     onBackPressed();
-
                 }
+                editor.commit();
             }
         });
         btnClose.setOnClickListener(new View.OnClickListener() {
