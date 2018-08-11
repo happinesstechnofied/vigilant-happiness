@@ -20,5 +20,6 @@ public class Services {
     public static String SERVICE_CREATION_URL = "http://orbrixtechnologies.com/services/api/service_creation_ver_1_0.php";
     public static String GET_SERVICE_URL = "http://orbrixtechnologies.com/services/api/service_apis.php";
     public static String GET_SERVICE_CREATION = "http://orbrixtechnologies.com/services/api/service_creation_ver_1_0.php";
+    public static String USER_RATING = "";
 
 }

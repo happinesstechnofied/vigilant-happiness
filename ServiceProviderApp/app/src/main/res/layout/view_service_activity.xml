@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fresco="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -340,20 +341,6 @@ Save time and stress when planning your wedding."
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/txtFeatures"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txtFeatureTitle"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="10dp"
-                    android:padding="5dp"
-                    android:typeface="serif"
-                    android:text="* Wedding and Events\n\n* Pre-Wedding\n\n* PhotoShoot\n\n* Anniversary\n\n* Events"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="15sp"
-                    android:textStyle="normal" />
-
             </RelativeLayout>
 
             <RelativeLayout
@@ -508,6 +495,52 @@ Save time and stress when planning your wedding."
                     android:textColor="@color/colorBlack"/>
 
             </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/contactLayout">
+
+                <TextView
+                    android:id="@+id/txtReviewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:typeface="monospace"
+                    android:text="Customer Review"
+                    android:textColor="@color/colorDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/ratingListView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtReviewTitle"
+                    android:divider="@null"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:dividerHeight="5dp"
+                    android:padding="10dp"
+                    android:visibility="visible"></android.support.v7.widget.RecyclerView>
+
+                <Button
+                    android:id="@+id/btnMoreReview"
+                    android:layout_width="150dp"
+                    android:layout_height="45dp"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/colorWhite"
+                    android:layout_below="@+id/ratingListView"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/edit_btn_selection"
+                    android:text="More Review"/>
+
+            </RelativeLayout>
+
         </RelativeLayout>
     </ScrollView>
 
@@ -547,4 +580,21 @@ Save time and stress when planning your wedding."
             android:textColor="@color/white_trans" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtFeatures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="436dp"
+        android:layout_marginEnd="2110dp"
+        android:layout_marginRight="2110dp"
+        android:padding="5dp"
+        android:text="* Wedding and Events\n\n* Pre-Wedding\n\n* PhotoShoot\n\n* Anniversary\n\n* Events"
+        android:textColor="@color/colorBlack"
+        android:textSize="15sp"
+        android:textStyle="normal"
+        android:typeface="serif" />
 </RelativeLayout>

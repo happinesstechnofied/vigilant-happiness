@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/rateUserIcon"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:layout_weight=".1"
+            android:src="@drawable/ic_placeholder"
+            app:civ_border_color="@color/colorWhite"
+            app:civ_border_width="1dp"
+            app:civ_shadow="true"
+            app:civ_shadow_color="@color/colorWhite"
+            app:civ_shadow_radius="2" />
+
+        <TextView
+            android:id="@+id/txtRateUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/rateUserIcon"
+            android:text="sfafsfas"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1.0"
+            style="@style/RatingBar"
+            android:layout_marginLeft="10dp"
+            android:rating="4.0"
+            android:layout_toRightOf="@+id/rateUserIcon"
+            android:layout_below="@+id/txtRateUserName"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/txtRateUserDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/ratingBar"
+            android:layout_below="@+id/txtRateUserName"
+            android:text="sfafsfas"
+            android:textSize="12sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"/>
+
+
+        <TextView
+            android:id="@+id/txtReviewUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/rateUserIcon"
+            android:layout_below="@+id/txtRateUserDate"
+            android:text="sfafsfas"
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="6dp"/>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDark"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="3dp"
+            android:layout_below="@+id/txtReviewUser"></View>
+
+    </RelativeLayout>
+</RelativeLayout>

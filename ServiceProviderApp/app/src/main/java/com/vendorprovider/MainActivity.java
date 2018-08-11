@@ -204,6 +204,8 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(postRequest);
     }
 
+
+
     private boolean isPermissionGranted(String permission) {
         int result = ContextCompat.checkSelfPermission(this, permission);
         if (result == PackageManager.PERMISSION_GRANTED)

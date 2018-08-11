@@ -6,7 +6,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -26,8 +28,10 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import adapter.GalleryAdapter;
+import adapter.ReviewAdapter;
 import model.Feature;
 import model.GalleryImage;
+import model.ReviewRatting;
 import model.ServicesData;
 import util.AppConstants;
 import util.ImageLoadTask;
@@ -48,10 +52,16 @@ public class ViewServicesActivity extends AppCompatActivity {
     Intent intent;
     int position;
     JSONArray ServiceData;
+    JSONArray RateingArray;
     public static ArrayList<ServicesData> arrayList = new ArrayList<>();
     public static ArrayList<GalleryImage> galleryImages = new ArrayList<>();
+    public static ArrayList<ReviewRatting> reviewRateList = new ArrayList<>();
     public static ArrayList<Feature> features = null;
     SharedPreferences preferences;
+    RecyclerView ratingListView;
+    ReviewAdapter reviewAdapter;
+    RelativeLayout layoutRating;
+    Button btnMoreReview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +94,19 @@ public class ViewServicesActivity extends AppCompatActivity {
                 startActivity(new Intent(ViewServicesActivity.this, ServiceCreationActivity.class));
             }
         });
+
+        btnMoreReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent review=new Intent(ViewServicesActivity.this,ReviewActivity.class);
+                    startActivity(review);
+            }
+        });
         viewService();
+
     }
+
+
 
     private void viewService() {
         try {
@@ -143,6 +164,17 @@ public class ViewServicesActivity extends AppCompatActivity {
                 galleryListView.setAdapter(rcAdapter);
             }
 
+            reviewRateList = (ArrayList<ReviewRatting>) nData.getReviewRattings();
+            if (reviewRateList.size() == 0){
+                layoutRating.setVisibility(View.GONE);
+            }else{
+                reviewAdapter = new ReviewAdapter(ViewServicesActivity.this, reviewRateList);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                ratingListView.setLayoutManager(mLayoutManager);
+                ratingListView.setItemAnimator(new DefaultItemAnimator());
+                ratingListView.setAdapter(reviewAdapter);
+            }
+
             txtVendorName.setText("Name: "+nData.getContactName());
             txtVendorApartment.setText("Apartment: "+nData.getAppartment());
             txtVendorLocation.setText("Location: "+nData.getLatitude()+"/"+nData.getLongitude());
@@ -158,6 +190,9 @@ public class ViewServicesActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        btnMoreReview = (Button) findViewById(R.id.btnMoreReview);
+        layoutRating = (RelativeLayout) findViewById(R.id.layoutRating);
+        ratingListView = (RecyclerView) findViewById(R.id.ratingListView);
         layoutGallery = (RelativeLayout) findViewById(R.id.layoutGallery);
         galleryListView = (RecyclerView) findViewById(R.id.galleryListView);
         lLayout = new GridLayoutManager(ViewServicesActivity.this, 3);

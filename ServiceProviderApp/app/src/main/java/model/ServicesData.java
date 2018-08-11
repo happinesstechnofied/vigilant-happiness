@@ -51,7 +51,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "state",
         "city",
         "pincode",
-        "tags"
+        "tags",
+        "review_rattings",
+        "total_reviews",
+        "total_rattings"
 })
 public class ServicesData implements Serializable
 {
@@ -134,9 +137,15 @@ public class ServicesData implements Serializable
     private String pincode;
     @JsonProperty("tags")
     private String tags;
+    @JsonProperty("review_rattings")
+    private List<ReviewRatting> reviewRattings = null;
+    @JsonProperty("total_reviews")
+    private Integer totalReviews;
+    @JsonProperty("total_rattings")
+    private String totalRattings;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-    private final static long serialVersionUID = 4512909861551681719L;
+    private final static long serialVersionUID = 8663798183385564089L;
 
     @JsonProperty("service_status")
     public String getServiceStatus() {
@@ -526,6 +535,36 @@ public class ServicesData implements Serializable
     @JsonProperty("tags")
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    @JsonProperty("review_rattings")
+    public List<ReviewRatting> getReviewRattings() {
+        return reviewRattings;
+    }
+
+    @JsonProperty("review_rattings")
+    public void setReviewRattings(List<ReviewRatting> reviewRattings) {
+        this.reviewRattings = reviewRattings;
+    }
+
+    @JsonProperty("total_reviews")
+    public Integer getTotalReviews() {
+        return totalReviews;
+    }
+
+    @JsonProperty("total_reviews")
+    public void setTotalReviews(Integer totalReviews) {
+        this.totalReviews = totalReviews;
+    }
+
+    @JsonProperty("total_rattings")
+    public String getTotalRattings() {
+        return totalRattings;
+    }
+
+    @JsonProperty("total_rattings")
+    public void setTotalRattings(String totalRattings) {
+        this.totalRattings = totalRattings;
     }
 
     @JsonAnyGetter

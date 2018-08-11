@@ -49,6 +49,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapte
         CircularImageView imgCateImage, imgSubCateImage;
         ImageView imgContact;
         RelativeLayout layoutVendorStatus;
+        public TextView txtAverageRate;
 
         public MyViewHolder(View view) {
             super(view);
@@ -69,6 +70,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapte
             imgCateImage = (CircularImageView) view.findViewById(R.id.imgCateImage);
             imgSubCateImage = (CircularImageView) view.findViewById(R.id.imgSubCateImage);
             imgContact = (ImageView) view.findViewById(R.id.imgContact);
+            txtAverageRate = (TextView) view.findViewById(R.id.txtAverageRate);
         }
     }
 
@@ -102,7 +104,8 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapte
             } else {
                 holder.txtVendorStatus.setText(nData.getServiceStatus());
             }
-            holder.txtRating.setText("0.0");
+            holder.txtRating.setText(nData.getTotalRattings());
+            holder.txtAverageRate.setText(String.valueOf(nData.getTotalReviews()));
             holder.txtCateTitle.setText(nData.getParentCatName());
             holder.txtSubCateTitle.setText(nData.getSubCatName());
             holder.txtVendorNumber.setText(nData.getMobileNo());

@@ -125,6 +125,7 @@ public class HomeFragment extends Fragment {
             e.printStackTrace();
         }
     }
+    
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
