@@ -51,7 +51,7 @@ public class SearchingKeywordFragment extends Fragment {
         txtGenericKeyWord = (TextInputEditText) view.findViewById(R.id.txtGenericKeyWord);
 
         if (checkEditMode.equals("Edit")) {
-
+            txtGenericKeyWord.setText("");
         }
 
         btnNext.setOnClickListener(new View.OnClickListener() {

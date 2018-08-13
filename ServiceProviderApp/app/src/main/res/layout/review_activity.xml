@@ -36,7 +36,7 @@
         android:layout_marginRight="10dp"
         android:divider="@null"
         android:dividerHeight="5dp"
-        android:padding="10dp"
+        android:padding="5dp"
         android:visibility="visible"></android.support.v7.widget.RecyclerView>
 
 </RelativeLayout>

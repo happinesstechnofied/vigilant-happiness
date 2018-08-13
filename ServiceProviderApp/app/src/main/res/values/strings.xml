@@ -86,7 +86,7 @@
     <string name="new_pass_btn">Create New</string>
 
 
-    <string name="sign_up_detil_msg">Enter Signup Detail.</string>
+    <string name="sign_up_detil_msg">Enter SignUp Detail.</string>
     <string name="sign_up_detil_btn">Save</string>
 
     <!-- Strings related to login -->

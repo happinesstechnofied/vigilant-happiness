@@ -9,10 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import java.util.ArrayList;
-
 import adapter.ReviewAdapter;
-import model.ReviewRatting;
 
 /**
  * Created by rajgandhi on 10/08/18.

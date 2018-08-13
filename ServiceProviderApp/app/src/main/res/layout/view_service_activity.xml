@@ -497,12 +497,48 @@ Save time and stress when planning your wedding."
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/layoutRating"
+                android:id="@+id/layoutQueAns"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/colorWhite"
                 android:layout_marginTop="2dp"
                 android:layout_below="@+id/contactLayout">
+
+
+                <TextView
+                    android:id="@+id/txtQueAnsTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:padding="5dp"
+                    android:typeface="monospace"
+                    android:text="Customer que and ans"
+                    android:textColor="@color/colorDark"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/queansListView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtQueAnsTitle"
+                    android:divider="@null"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:dividerHeight="5dp"
+                    android:padding="10dp"
+                    android:visibility="visible"></android.support.v7.widget.RecyclerView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layoutRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:layout_marginTop="2dp"
+                android:layout_below="@+id/layoutQueAns">
 
                 <TextView
                     android:id="@+id/txtReviewTitle"

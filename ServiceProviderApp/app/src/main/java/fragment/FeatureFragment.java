@@ -89,9 +89,10 @@ public class FeatureFragment extends Fragment {
                     flag = 1;
                 }
                 editor.commit();
-                ServiceCreationActivity.mViewPager.setCurrentItem(4, true);
                 if(flag == 0){
                     Toast.makeText(getContext(), "Please enter feature post!", Toast.LENGTH_SHORT).show();
+                }else{
+                    ServiceCreationActivity.mViewPager.setCurrentItem(4, true);
                 }
             }
         });

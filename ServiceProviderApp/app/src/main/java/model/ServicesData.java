@@ -54,7 +54,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "tags",
         "review_rattings",
         "total_reviews",
-        "total_rattings"
+        "total_rattings",
+        "que_ans_history"
 })
 public class ServicesData implements Serializable
 {
@@ -143,9 +144,11 @@ public class ServicesData implements Serializable
     private Integer totalReviews;
     @JsonProperty("total_rattings")
     private String totalRattings;
+    @JsonProperty("que_ans_history")
+    private List<QueAnsHistory> queAnsHistory = null;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-    private final static long serialVersionUID = 8663798183385564089L;
+    private final static long serialVersionUID = -557723790757291366L;
 
     @JsonProperty("service_status")
     public String getServiceStatus() {
@@ -567,6 +570,16 @@ public class ServicesData implements Serializable
         this.totalRattings = totalRattings;
     }
 
+    @JsonProperty("que_ans_history")
+    public List<QueAnsHistory> getQueAnsHistory() {
+        return queAnsHistory;
+    }
+
+    @JsonProperty("que_ans_history")
+    public void setQueAnsHistory(List<QueAnsHistory> queAnsHistory) {
+        this.queAnsHistory = queAnsHistory;
+    }
+
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -578,3 +591,5 @@ public class ServicesData implements Serializable
     }
 
 }
+
+

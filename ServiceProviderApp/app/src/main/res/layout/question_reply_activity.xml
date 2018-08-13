@@ -39,7 +39,8 @@
             android:layout_height="wrap_content"
             android:text="Question:"
             android:padding="5dp"
-            android:layout_marginTop="30dp"
+            android:typeface="monospace"
+            android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:textSize="18sp"/>
 
@@ -51,11 +52,40 @@
             android:text="Which crop is sown on the largest area in India?"
             android:layout_below="@+id/txtQue"
             android:padding="5dp"
+            android:typeface="serif"
             android:textColor="@color/colorBlack"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="50dp"
             android:textSize="16sp"/>
+
+
+        <TextView
+            android:id="@+id/txtAns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Answer:"
+            android:layout_below="@+id/txtQuestion"
+            android:padding="5dp"
+            android:typeface="monospace"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/txtAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:typeface="serif"
+            android:layout_below="@+id/txtAns"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="16sp"/>
+
 
         <RelativeLayout
             android:id="@+id/layoutNumber"
@@ -82,6 +112,7 @@
                     android:hint="@string/type_ans"
                     android:textColorHint="@color/colorDark"
                     android:inputType="text"
+                    android:typeface="serif"
                     android:text=""
                     android:textSize="15sp"
                     android:maxLines="1"
@@ -98,12 +129,14 @@
             android:layout_above="@+id/bottomLayout">
 
             <CheckBox
+                android:id="@+id/checkPolicy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:button="@drawable/check_box_selector"
                 android:text="@string/reply_msg"
                 android:paddingLeft="5dp"
                 android:layout_marginLeft="10dp"
+                android:typeface="serif"
                 android:padding="5dp"
                 android:textSize="15sp"
                 android:textColor="@color/colorDark" />
@@ -115,22 +148,25 @@
             android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_alignParentBottom="true">
 
             <Button
                 android:id="@+id/txtSubmitNow"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="0dp"
                 android:layout_marginRight="0dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/edit_btn_selection"
                 android:gravity="center"
                 android:padding="5dp"
+                android:typeface="serif"
                 android:text="Send"
                 android:textColor="@color/white_trans"
                 android:textSize="18sp" />
 
         </RelativeLayout>
-
     </RelativeLayout>
 </RelativeLayout>

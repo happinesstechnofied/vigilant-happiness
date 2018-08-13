@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/layoutQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+
+        >
+
+        <TextView
+            android:id="@+id/txtQuestion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="2dp"
+            android:layout_centerVertical="true"
+            android:drawablePadding="5dp"
+            android:layout_marginTop="5dp"
+            android:drawableLeft="@drawable/icon_question_answer"
+            android:text="Question:"
+            android:textSize="14sp"
+            android:textColor="#FF0000"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/txtQuestionDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/txtQuestion"
+            android:padding="2dp"
+            android:text="Question Display"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:typeface="serif" />
+
+
+        <TextView
+            android:id="@+id/txtQuestionDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/txtQuestionDisplay"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="2dp"
+            android:text="Date"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="10sp"
+            android:typeface="monospace" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/layoutAnswer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutQuestion">
+
+        <TextView
+            android:id="@+id/txtAnswer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:padding="2dp"
+            android:drawablePadding="5dp"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@drawable/icon_reply_ans"
+            android:text="Answer:"
+            android:textSize="14sp"
+            android:textColor="@color/colorPrimaryDark"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/txtAnswerDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@+id/txtAnswer"
+            android:padding="2dp"
+            android:layout_centerVertical="true"
+            android:text="Answer Display"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:typeface="serif" />
+
+
+        <TextView
+            android:id="@+id/txtAnswerDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/txtAnswerDisplay"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:padding="2dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:text="Date"
+            android:textSize="10sp"
+            android:typeface="monospace" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

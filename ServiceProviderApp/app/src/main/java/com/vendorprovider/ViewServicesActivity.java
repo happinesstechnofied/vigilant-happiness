@@ -28,9 +28,11 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import adapter.GalleryAdapter;
+import adapter.QueAnsAdapter;
 import adapter.ReviewAdapter;
 import model.Feature;
 import model.GalleryImage;
+import model.QueAnsHistory;
 import model.ReviewRatting;
 import model.ServicesData;
 import util.AppConstants;
@@ -62,6 +64,12 @@ public class ViewServicesActivity extends AppCompatActivity {
     ReviewAdapter reviewAdapter;
     RelativeLayout layoutRating;
     Button btnMoreReview;
+
+    public static ArrayList<QueAnsHistory> queAnsList = new ArrayList<>();
+    RecyclerView queansListView;
+    RelativeLayout layoutQueAns;
+    QueAnsAdapter queansAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +106,9 @@ public class ViewServicesActivity extends AppCompatActivity {
         btnMoreReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("Review", "AllReview");
+                    editor.commit();
                     Intent review=new Intent(ViewServicesActivity.this,ReviewActivity.class);
                     startActivity(review);
             }
@@ -164,7 +175,12 @@ public class ViewServicesActivity extends AppCompatActivity {
                 galleryListView.setAdapter(rcAdapter);
             }
 
+            /*customer review part*/
             reviewRateList = (ArrayList<ReviewRatting>) nData.getReviewRattings();
+            if(reviewRateList.size()<5){
+                btnMoreReview.setVisibility(View.GONE);
+            }
+
             if (reviewRateList.size() == 0){
                 layoutRating.setVisibility(View.GONE);
             }else{
@@ -173,6 +189,18 @@ public class ViewServicesActivity extends AppCompatActivity {
                 ratingListView.setLayoutManager(mLayoutManager);
                 ratingListView.setItemAnimator(new DefaultItemAnimator());
                 ratingListView.setAdapter(reviewAdapter);
+            }
+
+            /*customer question and answer*/
+            queAnsList = (ArrayList<QueAnsHistory>) nData.getQueAnsHistory();
+            if(queAnsList.size()==0){
+                layoutQueAns.setVisibility(View.GONE);
+            }else{
+                queansAdapter = new QueAnsAdapter(ViewServicesActivity.this, queAnsList);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                queansListView.setLayoutManager(mLayoutManager);
+                queansListView.setItemAnimator(new DefaultItemAnimator());
+                queansListView.setAdapter(queansAdapter);
             }
 
             txtVendorName.setText("Name: "+nData.getContactName());
@@ -190,6 +218,8 @@ public class ViewServicesActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        layoutQueAns = (RelativeLayout) findViewById(R.id.layoutQueAns);
+        queansListView = (RecyclerView) findViewById(R.id.queansListView);
         btnMoreReview = (Button) findViewById(R.id.btnMoreReview);
         layoutRating = (RelativeLayout) findViewById(R.id.layoutRating);
         ratingListView = (RecyclerView) findViewById(R.id.ratingListView);

@@ -12,7 +12,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_weight="1"
-        android:hint="(Ex.add feature with cost)"
+        android:hint="(Ex.add feature with post)"
         android:inputType="text"
         android:textSize="16sp"
         android:typeface="serif" />
