@@ -21,5 +21,8 @@ public class Services {
     public static String GET_SERVICE_URL = "http://orbrixtechnologies.com/services/api/service_apis.php";
     public static String GET_SERVICE_CREATION = "http://orbrixtechnologies.com/services/api/service_creation_ver_1_0.php";
     public static String QUE_ANS_URL = "http://orbrixtechnologies.com/services/api/question_answer.php";
+    public static String ANS_GIVE_URL = "http://orbrixtechnologies.com/services/api/question_answer.php";
+
+
 
 }

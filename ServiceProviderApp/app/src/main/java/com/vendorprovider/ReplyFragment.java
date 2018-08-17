@@ -58,7 +58,7 @@ public class ReplyFragment extends Fragment {
     ConnectionDetector cd;
     RecyclerView questionListView;
     JSONArray finalData;
-    ArrayList<QueAnsHistory> arrayList= new ArrayList<>();
+    public static ArrayList<QueAnsHistory> arrayList= new ArrayList<>();
     private KProgressHUD hud;
     RequestQueue requestQueue;
     SharedPreferences preferences;
@@ -81,7 +81,11 @@ public class ReplyFragment extends Fragment {
                     @Override
                     public void onItemClick(View view, int position) {
                         // TODO Handle item click
-
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putInt("Position", position);
+                        editor.commit();
+                        Intent i=new Intent(getContext(),QuestionReplyActivity.class);
+                        startActivity(i);
                     }
                 })
         );

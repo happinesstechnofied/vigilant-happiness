@@ -39,10 +39,27 @@
             android:layout_height="wrap_content"
             android:text="Question:"
             android:padding="5dp"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/icon_question_answer"
             android:typeface="monospace"
+            android:textColor="#FF0000"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="10dp"
             android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/txtQueDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:padding="5dp"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="5dp"
+            android:typeface="serif"
+            android:textColor="@color/colorDark"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:textSize="14sp"/>
 
 
         <TextView
@@ -67,10 +84,28 @@
             android:text="Answer:"
             android:layout_below="@+id/txtQuestion"
             android:padding="5dp"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/icon_reply_ans"
             android:typeface="monospace"
+            android:textColor="@color/colorPrimaryDark"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="40dp"
             android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/txtAnsDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:layout_below="@+id/txtQuestion"
+            android:padding="5dp"
+            android:drawablePadding="5dp"
+            android:typeface="serif"
+            android:textColor="@color/colorDark"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/txtAnswer"
@@ -83,16 +118,15 @@
             android:textColor="@color/colorBlack"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="70dp"
             android:textSize="16sp"/>
-
 
         <RelativeLayout
             android:id="@+id/layoutNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorWhite"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:layout_above="@+id/checkLayout">
 
             <android.support.design.widget.TextInputLayout
