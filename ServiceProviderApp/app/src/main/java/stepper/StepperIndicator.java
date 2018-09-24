@@ -34,7 +34,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
-import com.vendorprovider.R;
+import com.apt360.vendor.R;
 
 import java.util.ArrayList;
 import java.util.List;

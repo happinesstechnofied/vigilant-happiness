@@ -16,7 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import com.photopicker.model.ImageModel;
 import com.squareup.picasso.Picasso;
-import com.vendorprovider.R;
+import com.apt360.vendor.R;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;

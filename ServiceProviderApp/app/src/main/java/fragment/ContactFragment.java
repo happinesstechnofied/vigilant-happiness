@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -14,8 +15,8 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.telephony.PhoneNumberUtils;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Patterns;
@@ -28,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.apt360.vendor.BottomDialogActivity;
 import com.connection.ConnectionDetector;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
@@ -46,24 +49,24 @@ import com.heetch.countrypicker.Country;
 import com.heetch.countrypicker.CountryPickerCallbacks;
 import com.heetch.countrypicker.CountryPickerDialog;
 import com.heetch.countrypicker.Utils;
-import com.vendorprovider.LoginActivity;
-import com.vendorprovider.MainActivity;
-import com.vendorprovider.MapLocationActivity;
-import com.vendorprovider.ProfileFragment;
-import com.vendorprovider.R;
-import com.vendorprovider.ServiceCreationActivity;
-import com.vendorprovider.ViewServicesActivity;
+import com.kaopiz.kprogresshud.KProgressHUD;
+import com.apt360.vendor.LoginActivity;
+import com.apt360.vendor.MapLocationActivity;
+import com.apt360.vendor.R;
+import com.apt360.vendor.ServiceCreationActivity;
+import com.apt360.vendor.ViewServicesActivity;
+import com.mikhaellopez.circularimageview.CircularImageView;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URL;
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 import adapter.DisplayGalleryAdapter;
-import kprogresshud.KProgressHUD;
 import services.Services;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -99,6 +102,12 @@ public class ContactFragment extends Fragment {
     LinearLayout countryblock;
     TextView countryCode;
     ImageView countryFlag;
+    public static CircularImageView imgApartmentProf;
+    RelativeLayout photoLayout;
+    public static int checkAddressProf = 0;
+    public static Boolean isProfUpload = false;
+    public static TextView txtApartmentProf;
+    Bitmap bitmap;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -149,6 +158,9 @@ public class ContactFragment extends Fragment {
         countryblock = (LinearLayout) view.findViewById(R.id.countryblock);
         countryFlag = (ImageView) view.findViewById(R.id.countryFlag);
         countryCode = (TextView) view.findViewById(R.id.countryCode);
+        imgApartmentProf = (CircularImageView) view.findViewById(R.id.imgApartmentProf);
+        photoLayout = (RelativeLayout)view.findViewById(R.id.photoLayout);
+        txtApartmentProf = (TextView)view.findViewById(R.id.txtApartmentProf);
 
         final CountryPickerDialog countryPicker =
                 new CountryPickerDialog(getContext(), new CountryPickerCallbacks() {
@@ -181,6 +193,16 @@ public class ContactFragment extends Fragment {
             }
         });
 
+        photoLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("sp_from", "contact_fragment");
+                editor.commit();
+                new BottomDialogActivity().show(getActivity().getSupportFragmentManager(), "Dialog");
+            }
+        });
+
         if (checkEditMode.equals("Edit")) {
             txtVendorName.setText(ViewServicesActivity.arrayList.get(position).getContactName());
             txtVendorApartment.setText(ViewServicesActivity.arrayList.get(position).getAppartment());
@@ -199,13 +221,18 @@ public class ContactFragment extends Fragment {
                 System.err.println("NumberParseException was thrown: " + e.toString());
             }
 
-
-
-
             txtVendorEmail.setText(ViewServicesActivity.arrayList.get(position).getEmail());
             txtVendorAddress.setText(ViewServicesActivity.arrayList.get(position).getAddress());
             txtVendorCity.setText(ViewServicesActivity.arrayList.get(position).getCity());
             txtVendorPincode.setText(ViewServicesActivity.arrayList.get(position).getPincode());
+            latitude_location = ViewServicesActivity.arrayList.get(position).getLatitude();
+            longitude_location = ViewServicesActivity.arrayList.get(position).getLongitude();
+            Picasso.with(getContext()).load(ViewServicesActivity.arrayList.get(position).getAddressMedium()).placeholder(R.drawable.ic_placeholder).error(R.drawable.ic_placeholder).into(imgApartmentProf);
+            txtApartmentProf.setText("Apartment Address Proof Submitted!");
+            imgApartmentProf.buildDrawingCache(true);
+            bitmap = imgApartmentProf.getDrawingCache(true);
+            isProfUpload = true;
+            checkAddressProf++;
         }
 
         btnLocation.setOnClickListener(new View.OnClickListener() {
@@ -249,6 +276,12 @@ public class ContactFragment extends Fragment {
                     return;
 
                 }
+                if (vendor_mobile_no.length() < 10) {
+                    txtVendorNumber.setError("Enter valid 10 digit mobile no!");
+                    txtVendorNumber.requestFocus();
+                    return;
+
+                }
                 if (TextUtils.isEmpty(vendor_email)) {
                     txtVendorEmail.setError("Please enter email!");
                     txtVendorEmail.requestFocus();
@@ -259,7 +292,10 @@ public class ContactFragment extends Fragment {
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                     return;
-                } else if (!isEmailValid(vendor_email)) {
+                }
+                if (!isProfUpload) {
+                    Toast.makeText(getContext(),"Please Upload Apartment Address Proof!",Toast.LENGTH_LONG).show();
+                }else if (!isEmailValid(vendor_email)) {
                     txtVendorEmail.setError("Please enter valid email!");
                     txtVendorEmail.requestFocus();
                 } else {
@@ -281,6 +317,11 @@ public class ContactFragment extends Fragment {
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
                 .setLabel("Creating...");
         hud.show();
+
+        imgApartmentProf.buildDrawingCache(true);
+        bitmap = imgApartmentProf.getDrawingCache(true);
+        getEncoded64ImageStringFromBitmap(bitmap);
+
         StringRequest postRequest = new StringRequest(Request.Method.POST, Services.SERVICE_CREATION_URL,
                 new Response.Listener<String>() {
                     @Override
@@ -311,7 +352,7 @@ public class ContactFragment extends Fragment {
                             hud.dismiss();
                         }
                         Log.d("Error.Response", error.toString());
-                        Toast.makeText(getContext(), error.toString(), LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), error.toString(), LENGTH_SHORT).show();
                     }
                 }
         ) {
@@ -361,7 +402,12 @@ public class ContactFragment extends Fragment {
                 params.put("payment_option", payment_option);
                 params.put("payment_type", payment_type);
 
-                params.put("feature_0", preferences.getString("feature_0", ""));
+                //params.put("feature_0", preferences.getString("feature_0", ""));
+                int image_counter = 0;
+                do {
+                    params.put("feature_" + image_counter, preferences.getString("feature_" + image_counter, ""));
+                    image_counter++;
+                } while (!preferences.getString("feature_" + image_counter, "").equalsIgnoreCase(""));
 
                 params.put("tags", genericKeyword);
                 params.put("vendor_name", vendor_name);
@@ -373,6 +419,7 @@ public class ContactFragment extends Fragment {
                 params.put("vendor_address", vendor_address);
                 params.put("vendor_city", vendor_city);
                 params.put("vendor_pincode", vendor_pincode);
+                params.put("address_proof", getEncoded64ImageStringFromBitmap(bitmap));
                 return params;
             }
         };
@@ -434,5 +481,13 @@ public class ContactFragment extends Fragment {
                 });
         final AlertDialog alert = builder.create();
         alert.show();
+    }
+    public String getEncoded64ImageStringFromBitmap(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+        byte[] byteFormat = stream.toByteArray();
+        String imgString = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
+
+        return imgString;
     }
 }

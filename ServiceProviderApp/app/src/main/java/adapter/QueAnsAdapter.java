@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
-import com.vendorprovider.R;
+import com.apt360.vendor.R;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;

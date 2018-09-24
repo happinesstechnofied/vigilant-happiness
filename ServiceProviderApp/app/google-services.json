@@ -1,35 +1,51 @@
 {
   "project_info": {
-    "project_number": "109956951623",
-    "firebase_url": "https://phonic-presence-188413.firebaseio.com",
-    "project_id": "phonic-presence-188413",
-    "storage_bucket": "phonic-presence-188413.appspot.com"
+    "project_number": "59614046281",
+    "firebase_url": "https://apartment-360.firebaseio.com",
+    "project_id": "apartment-360",
+    "storage_bucket": "apartment-360.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:109956951623:android:cba8f2e5725a3786",
+        "mobilesdk_app_id": "1:59614046281:android:3522b258f4282115",
         "android_client_info": {
-          "package_name": "com.vendorprovider"
+          "package_name": "com.apt360.vendor"
         }
       },
       "oauth_client": [
         {
-          "client_id": "109956951623-ak9ljv65blb625sf60h9jnl5ia0regd1.apps.googleusercontent.com",
+          "client_id": "59614046281-0gbqops1tgo1ni19kprctrobtrkdldah.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.vendorprovider",
+            "package_name": "com.apt360.vendor",
             "certificate_hash": "806c94c41c6ec6a610d035e508911b471593baa5"
           }
         },
         {
-          "client_id": "109956951623-l0rn06v2censdfh6g5ghtr407ijig827.apps.googleusercontent.com",
+          "client_id": "59614046281-ia6e6tnc09rtj2gi2kcga21glenskq1m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apt360.vendor",
+            "certificate_hash": "876e2ebf25fbec2058a76a3590230562c53f763e"
+          }
+        },
+        {
+          "client_id": "59614046281-g7834fgabo70g1s0anc535n442v6ev7v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apt360.vendor",
+            "certificate_hash": "23b8e8d5777246a7bd65da0c672e74552e26d5e2"
+          }
+        },
+        {
+          "client_id": "59614046281-epu6s700ff72vm8k0ga25ps9mn4be9a7.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCug1FAZutI1lf_iavFugsG9WRIzalhoK4"
+          "current_key": "AIzaSyCPos-aaTIT1slzKc_UdikVNnaKt9DByb4"
         }
       ],
       "services": {
@@ -40,7 +56,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "109956951623-l0rn06v2censdfh6g5ghtr407ijig827.apps.googleusercontent.com",
+              "client_id": "59614046281-epu6s700ff72vm8k0ga25ps9mn4be9a7.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

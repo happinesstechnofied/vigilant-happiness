@@ -11,9 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.vendorprovider.R;
-import com.vendorprovider.ServiceCreationActivity;
-import com.vendorprovider.ViewServicesActivity;
+import com.apt360.vendor.R;
+import com.apt360.vendor.ServiceCreationActivity;
+import com.apt360.vendor.ViewServicesActivity;
 
 /**
  * Created by rajgandhi on 24/07/18.
@@ -51,7 +51,7 @@ public class SearchingKeywordFragment extends Fragment {
         txtGenericKeyWord = (TextInputEditText) view.findViewById(R.id.txtGenericKeyWord);
 
         if (checkEditMode.equals("Edit")) {
-            txtGenericKeyWord.setText("");
+            txtGenericKeyWord.setText(ViewServicesActivity.arrayList.get(position).getTags());
         }
 
         btnNext.setOnClickListener(new View.OnClickListener() {

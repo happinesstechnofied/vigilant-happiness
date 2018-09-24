@@ -55,7 +55,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "review_rattings",
         "total_reviews",
         "total_rattings",
-        "que_ans_history"
+        "que_ans_history",
+        "address_image",
+        "address_small",
+        "address_medium"
 })
 public class ServicesData implements Serializable
 {
@@ -144,6 +147,12 @@ public class ServicesData implements Serializable
     private Integer totalReviews;
     @JsonProperty("total_rattings")
     private String totalRattings;
+    @JsonProperty("address_image")
+    private String addressImage;
+    @JsonProperty("address_small")
+    private String addressSmall;
+    @JsonProperty("address_medium")
+    private String addressMedium;
     @JsonProperty("que_ans_history")
     private List<QueAnsHistory> queAnsHistory = null;
     @JsonIgnore
@@ -579,6 +588,37 @@ public class ServicesData implements Serializable
     public void setQueAnsHistory(List<QueAnsHistory> queAnsHistory) {
         this.queAnsHistory = queAnsHistory;
     }
+
+    @JsonProperty("address_image")
+    public String getAddressImage() {
+        return addressImage;
+    }
+
+    @JsonProperty("address_image")
+    public void setAddressImage(String addressImage) {
+        this.addressImage = addressImage;
+    }
+
+    @JsonProperty("address_small")
+    public String getAddressSmall() {
+        return addressSmall;
+    }
+
+    @JsonProperty("address_small")
+    public void setAddressSmall(String addressSmall) {
+        this.addressSmall = addressSmall;
+    }
+
+    @JsonProperty("address_medium")
+    public String getAddressMedium() {
+        return addressMedium;
+    }
+
+    @JsonProperty("address_medium")
+    public void setAddressMedium(String addressMedium) {
+        this.addressMedium = addressMedium;
+    }
+
 
     @JsonAnyGetter
     public Map<String, Object> getAdditionalProperties() {

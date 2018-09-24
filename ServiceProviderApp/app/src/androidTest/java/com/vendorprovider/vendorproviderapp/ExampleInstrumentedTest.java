@@ -1,4 +1,4 @@
-package com.vendorprovider.vendorproviderapp;
+package com.apt360.vendor.vendorproviderapp;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("vendor.com.vendorproviderapp", appContext.getPackageName());
+        assertEquals("vendor.com.apt360.vendorapp", appContext.getPackageName());
     }
 }

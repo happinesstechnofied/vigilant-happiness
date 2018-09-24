@@ -144,8 +144,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Mobile no"
-                            android:inputType="text"
+                            android:inputType="number"
                             android:maxLines="1"
+                            android:maxLength="10"
                             android:textColor="@color/colorBlack"
                             />
                     </android.support.design.widget.TextInputLayout>
@@ -281,11 +282,59 @@
                 </android.support.design.widget.TextInputLayout>
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/photoLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/layoutPincode">
+
+                <TextView
+                    android:id="@+id/txtAddressProf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:typeface="serif"
+                    android:textColor="#FF0000"
+                    android:text="Apartment Address Prof *"/>
+
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/imgApartmentProf"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_below="@+id/txtAddressProf"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight=".1"
+                    android:paddingLeft="20dp"
+                    android:src="@drawable/ic_placeholder"
+                    app:civ_border_color="@color/white_trans"
+                    app:civ_border_width="1dp"
+                    app:civ_shadow="true"
+                    app:civ_shadow_color="@color/colorDark"
+                    app:civ_shadow_radius="2" />
+
+                <TextView
+                    android:id="@+id/txtApartmentProf"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center"
+                    android:layout_toRightOf="@+id/imgApartmentProf"
+                    android:text="Please clearly upload address prof\notherwise we will not accept your prof! "
+                    android:textColor="@color/colorDark"
+                    android:textSize="15sp" />
+
+            </RelativeLayout>
+
             <Button
                 android:id="@+id/btnLocation"
                 android:layout_width="200dp"
                 android:layout_height="50dp"
-                android:layout_below="@+id/layoutPincode"
+                android:layout_below="@+id/photoLayout"
                 android:layout_centerHorizontal="true"
                 android:background="#3bbcf2"
                 android:drawableLeft="@drawable/ic_my_location"

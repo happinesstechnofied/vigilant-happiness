@@ -124,10 +124,12 @@ public class CountryPickerDialog extends AppCompatDialog {
     public Country getCountryFromSIM(Context context) {
         TelephonyManager telephonyManager =
                 (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        if (telephonyManager != null
-                && telephonyManager.getSimState() != TelephonyManager.SIM_STATE_ABSENT) {
-            return getCountryFromIsoCode(telephonyManager.getSimCountryIso());
-        }
-        return null;
+        return getCountryFromIsoCode("IN");
+//        if (telephonyManager != null
+//                && telephonyManager.getSimState() != TelephonyManager.SIM_STATE_ABSENT) {
+//            return getCountryFromIsoCode(telephonyManager.getSimCountryIso());
+//        }else{
+//
+//        }
     }
 }

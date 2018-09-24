@@ -30,7 +30,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.view.animation.AnimationUtils;
 import android.widget.GridView;
 import android.widget.HorizontalScrollView;
@@ -46,7 +45,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.apt360.vendor.LoginActivity;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.kaopiz.kprogresshud.KProgressHUD;
 import com.photopicker.Constants;
 import com.photopicker.adapter.AlbumAdapter;
 import com.photopicker.adapter.ListAlbumAdapter;
@@ -54,9 +56,7 @@ import com.photopicker.model.ImageModel;
 import com.photopicker.myinterface.IHandler;
 import com.photopicker.myinterface.OnAlbum;
 import com.photopicker.myinterface.OnListAlbum;
-import com.vendorprovider.LoginActivity;
-import com.vendorprovider.R;
-import com.vendorprovider.ServiceCreationActivity;
+import com.apt360.vendor.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,9 +69,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
-import kprogresshud.KProgressHUD;
 import services.Services;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -107,6 +105,7 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
     SharedPreferences preferences;
     public static JSONArray getImages;
     ArrayList<String> listString;
+    private KProgressHUD hud;
 
     private class GetItemAlbum extends AsyncTask<Void, Void, String> {
         private GetItemAlbum() {
@@ -459,7 +458,10 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
         imageItem.setScaleType(ImageView.ScaleType.CENTER_CROP);
         //btnDelete.getLayoutParams().width = this.pWHBtnDelete;
         //btnDelete.getLayoutParams().height = this.pWHBtnDelete;
-        Glide.with((Activity) this).load(item.getPathFile()).asBitmap().placeholder(R.drawable.piclist_icon_default).into(imageItem);
+        Glide.with((Activity) this).asBitmap().load(item.getPathFile()).apply(new RequestOptions().override(100, 100)
+                .placeholder(R.drawable.piclist_icon_default)
+                .error(R.drawable.piclist_icon_default).centerCrop()
+        ).into(imageItem);
 
 
 
@@ -542,10 +544,14 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
                             JSONArray jsonArray = jObj.getJSONArray("gallery_images");
                             getImages = jsonArray;
                             finish();
+                            if (hud.isShowing())
+                                hud.dismiss();
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(PickImageActivity.this, "Server Not Response! Please Try Again.", LENGTH_SHORT).show();
                             finish();
+                            if (hud.isShowing())
+                                hud.dismiss();
                         }
                     }
                 },
@@ -554,8 +560,10 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", error.toString());
-                        Toast.makeText(PickImageActivity.this, "Server Error! Please Try Again.", LENGTH_SHORT).show();
+                        //Toast.makeText(PickImageActivity.this, "Server Error! Please Try Again.", LENGTH_SHORT).show();
                         finish();
+                        if (hud.isShowing())
+                            hud.dismiss();
                     }
                 }
         ) {
@@ -639,6 +647,11 @@ public class PickImageActivity extends AppCompatActivity implements  OnClickList
         Intent mIntent = new Intent();
         setResult(Activity.RESULT_OK, mIntent);
         mIntent.putStringArrayListExtra(KEY_DATA_RESULT, listString);
+
+        hud = KProgressHUD.create(PickImageActivity.this)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("Upload Image!");
+        hud.show();
         setSelectedImages();
 
     }

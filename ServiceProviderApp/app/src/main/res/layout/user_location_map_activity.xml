@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/place_autocomplete_fragment"
-        tools:context="com.vendorprovider.MapLocationActivity" />
+        tools:context="com.apt360.vendor.com.vendor.MapLocationActivity" />
 
     <ImageView
         android:id="@+id/btnMyLocation"

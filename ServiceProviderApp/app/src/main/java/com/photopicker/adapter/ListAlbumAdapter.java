@@ -10,9 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.photopicker.model.ImageModel;
 import com.photopicker.myinterface.OnListAlbum;
-import com.vendorprovider.R;
+import com.apt360.vendor.R;
 
 import java.util.ArrayList;
 
@@ -62,7 +63,10 @@ public class ListAlbumAdapter extends ArrayAdapter<ImageModel> {
         final ImageModel item = (ImageModel) this.data.get(position);
         //  Glide.with(this.context).load(item.getPathFile()).asBitmap().override((int) Callback.DEFAULT_DRAG_ANIMATION_DURATION, (int) Callback.DEFAULT_DRAG_ANIMATION_DURATION).animate(R.anim.anim_fade_in).thumbnail((float) AppConst.ZOOM_MIN).error(R.drawable.piclist_icon_default).fallback(R.drawable.piclist_icon_default).placeholder(R.drawable.piclist_icon_default).into(holder.imageItem);
 
-        Glide.with(context).load(item.getPathFile()).asBitmap().placeholder(R.drawable.piclist_icon_default).into(holder.imageItem);
+        Glide.with(context).asBitmap().load(item.getPathFile()).apply(new RequestOptions().override(100, 100)
+                .placeholder(R.drawable.piclist_icon_default)
+                .error(R.drawable.piclist_icon_default).centerCrop()
+        ).into(holder.imageItem);
 
        // Picasso.with(this.context).load(new File(item.getPathFile())).placeholder(R.drawable.piclist_icon_default).into(holder.imageItem);
 

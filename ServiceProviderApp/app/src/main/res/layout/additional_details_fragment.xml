@@ -11,11 +11,11 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:typeface="monospace"
         android:padding="5dp"
         android:text="Additional Details"
         android:textColor="@color/colorBlack"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:typeface="monospace" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -41,21 +41,283 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
                     android:layout_weight="1"
+                    android:hint="@string/sort_des"
                     android:paddingTop="5dp"
                     android:theme="@style/TextLabel">
 
-                    <android.support.design.widget.TextInputEditText
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sort_des"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:theme="@style/TextLabel" />
+
+                    <jp.wasabeef.richeditor.RichEditor
                         android:id="@+id/txtSortDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/sort_des"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:typeface="serif"
                         android:textColor="@color/title_color"
                         android:textColorHint="@color/colorDark"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:typeface="serif" />
+
+                    <HorizontalScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/black">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/action_undo"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/undo" />
+
+                            <ImageButton
+                                android:id="@+id/action_redo"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/redo" />
+
+                            <ImageButton
+                                android:id="@+id/action_bold"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/bold" />
+
+                            <ImageButton
+                                android:id="@+id/action_italic"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/italic" />
+
+                            <ImageButton
+                                android:id="@+id/action_subscript"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/subscript" />
+
+                            <ImageButton
+                                android:id="@+id/action_superscript"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/superscript" />
+
+                            <ImageButton
+                                android:id="@+id/action_strikethrough"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/strikethrough" />
+
+                            <ImageButton
+                                android:id="@+id/action_underline"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/underline" />
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_heading1"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@drawable/h1"-->
+                            <!--/>-->
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_heading2"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@drawable/h2"-->
+                            <!--/>-->
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_heading3"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@drawable/h3"-->
+                            <!--/>-->
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_heading4"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@drawable/h4"-->
+                            <!--/>-->
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_heading5"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@drawable/h5"-->
+                            <!--/>-->
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_heading6"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@drawable/h6"-->
+                            <!--/>-->
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_txt_color"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@drawable/txt_color"-->
+                            <!--/>-->
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_bg_color"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@drawable/bg_color"-->
+                            <!--/>-->
+
+
+                            <ImageButton
+                                android:id="@+id/action_indent"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/indent" />
+
+                            <ImageButton
+                                android:id="@+id/action_outdent"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/outdent" />
+
+                            <ImageButton
+                                android:id="@+id/action_align_left"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/justify_left" />
+
+                            <ImageButton
+                                android:id="@+id/action_align_center"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/justify_center" />
+
+                            <ImageButton
+                                android:id="@+id/action_align_right"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/justify_right" />
+
+                            <ImageButton
+                                android:id="@+id/action_insert_bullets"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/bullets" />
+
+                            <ImageButton
+                                android:id="@+id/action_insert_numbers"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/numbers" />
+
+                            <ImageButton
+                                android:id="@+id/action_blockquote"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:background="@null"
+                                android:contentDescription="@null"
+                                android:src="@drawable/blockquote" />
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_insert_image"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@drawable/insert_image"-->
+                            <!--/>-->
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_insert_link"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@drawable/insert_link"-->
+                            <!--/>-->
+
+                            <!--<ImageButton-->
+                            <!--android:id="@+id/action_insert_checkbox"-->
+                            <!--android:layout_width="48dp"-->
+                            <!--android:layout_height="48dp"-->
+                            <!--android:background="@null"-->
+                            <!--android:contentDescription="@null"-->
+                            <!--android:src="@android:drawable/checkbox_on_background"-->
+                            <!--/>-->
+
+                        </LinearLayout>
+                    </HorizontalScrollView>
+
+
+                    <!--<android.support.design.widget.TextInputEditText-->
+                    <!--android:id="@+id/txtSortDescription"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:hint="@string/sort_des"-->
+                    <!--android:inputType="text|textMultiLine|textAutoCorrect"-->
+                    <!--android:maxLines="1"-->
+                    <!--android:typeface="serif"-->
+                    <!--android:textColor="@color/title_color"-->
+                    <!--android:textColorHint="@color/colorDark"-->
+                    <!--android:textSize="15sp" />-->
+
                 </android.support.design.widget.TextInputLayout>
+
 
             </RelativeLayout>
 
@@ -70,8 +332,8 @@
                     android:id="@+id/layoutLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:layout_above="@+id/connectedLayout"
+                    android:layout_marginBottom="5dp"
                     android:orientation="horizontal">
 
                     <android.support.design.widget.TextInputLayout
@@ -90,11 +352,11 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/opening_hours"
                             android:maxLines="1"
-                            android:typeface="serif"
                             android:text=""
                             android:textColor="@color/title_color"
                             android:textColorHint="@color/colorDark"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:typeface="serif" />
                     </android.support.design.widget.TextInputLayout>
 
                     <android.support.design.widget.TextInputLayout
@@ -114,15 +376,14 @@
                             android:hint="@string/closing_hours"
                             android:inputType="text"
                             android:maxLines="1"
-                            android:typeface="serif"
                             android:text=""
                             android:textColor="@color/title_color"
                             android:textColorHint="@color/colorDark"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:typeface="serif" />
                     </android.support.design.widget.TextInputLayout>
 
                 </LinearLayout>
-
 
 
             </RelativeLayout>
@@ -134,12 +395,35 @@
                 android:layout_below="@+id/layoutOpeningHours"
                 android:background="@color/colorWhite">
 
+                <LinearLayout
+                    android:id="@+id/countryblock"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="bottom">
+
+
+                    <TextView
+                        android:id="@+id/countryCode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:gravity="bottom"
+                        android:paddingBottom="11dp"
+                        android:text="₹"
+                        android:textColor="@android:color/black"
+                        android:theme="@style/TextLabel"/>
+                </LinearLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/inputMrpPrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     android:layout_weight="1"
                     android:paddingTop="5dp"
                     android:theme="@style/TextLabel">
@@ -151,12 +435,13 @@
                         android:hint="@string/mrp_price"
                         android:inputType="number"
                         android:maxLines="1"
-                        android:typeface="serif"
                         android:text=""
                         android:textColor="@color/title_color"
                         android:textColorHint="@color/colorDark"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:typeface="serif" />
                 </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
 
             </RelativeLayout>
 
@@ -167,12 +452,35 @@
                 android:layout_below="@+id/layoutMrpPrice"
                 android:background="@color/colorWhite">
 
+                <LinearLayout
+                    android:id="@+id/countryblock1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="bottom">
+
+
+                    <TextView
+                        android:id="@+id/country0Code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:gravity="bottom"
+                        android:paddingBottom="11dp"
+                        android:text="₹"
+                        android:textColor="@android:color/black"
+                        android:theme="@style/TextLabel"/>
+                </LinearLayout>
+
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/inputSalePrice"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     android:layout_weight="1"
                     android:paddingTop="5dp"
                     android:theme="@style/TextLabel">
@@ -185,11 +493,12 @@
                         android:inputType="number"
                         android:maxLines="1"
                         android:text=""
-                        android:typeface="serif"
                         android:textColor="@color/title_color"
                         android:textColorHint="@color/colorDark"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:typeface="serif" />
                 </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
 
             </RelativeLayout>
 
@@ -212,18 +521,18 @@
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="One Time Payment"
-                        android:typeface="monospace"
                         android:textColor="@color/colorDark"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:typeface="monospace" />
 
                     <RadioButton
                         android:id="@+id/radioBtnRecursivePayment"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:text="Recursive Payment"
-                        android:typeface="monospace"
                         android:textColor="@color/colorDark"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:typeface="monospace" />
 
                 </RadioGroup>
 
@@ -249,27 +558,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Every Months"
-                        android:typeface="monospace"
                         android:textColor="@color/colorDark"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:typeface="monospace" />
 
                     <RadioButton
                         android:id="@+id/radioBtnSixMonth"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Six Month"
-                        android:typeface="monospace"
                         android:textColor="@color/colorDark"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:typeface="monospace" />
 
                     <RadioButton
                         android:id="@+id/radioBtnYearly"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Yearly"
-                        android:typeface="monospace"
                         android:textColor="@color/colorDark"
-                        android:textSize="15sp" />
+                        android:textSize="15sp"
+                        android:typeface="monospace" />
 
                 </RadioGroup>
 
@@ -288,8 +597,8 @@
                     android:layout_alignParentLeft="true"
                     android:background="@drawable/sign_in_selector"
                     android:text="Back"
-                    android:typeface="monospace"
-                    android:textColor="@color/colorWhite" />
+                    android:textColor="@color/colorWhite"
+                    android:typeface="monospace" />
 
                 <Button
                     android:id="@+id/btnNext"
@@ -298,8 +607,8 @@
                     android:layout_alignParentRight="true"
                     android:background="@drawable/sign_up_selector"
                     android:text="Next"
-                    android:typeface="monospace"
-                    android:textColor="@color/colorWhite" />
+                    android:textColor="@color/colorWhite"
+                    android:typeface="monospace" />
 
             </RelativeLayout>
 

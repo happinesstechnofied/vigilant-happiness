@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.vendorprovider.R;
+import com.apt360.vendor.R;
 
 import java.util.ArrayList;
 import java.util.List;

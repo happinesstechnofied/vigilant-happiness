@@ -61,8 +61,8 @@
                 android:gravity="center"
                 android:text="@string/forgot_msg"
                 android:textColor="@color/colorDark"
-                android:textSize="9pt"
-                android:textStyle="bold"
+                android:textSize="8pt"
+                android:textStyle="normal"
                 android:typeface="serif" />
 
 
@@ -109,8 +109,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Enter your mobile no."
-                        android:inputType="text"
+                        android:inputType="number"
                         android:maxLines="1"
+                        android:maxLength="10"
                         android:textColor="#000000"
                         android:typeface="monospace" />
                 </android.support.design.widget.TextInputLayout>

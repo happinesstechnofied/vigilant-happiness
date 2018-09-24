@@ -37,7 +37,7 @@
 
     <!--service creation-->
     <string name="service_title">Service Title *</string>
-    <string name="tag_line">Tag Line *</string>
+    <string name="tag_line">Tag Line</string>
     <string name="sort_des">Short Description *</string>
     <string name="key_word">Generic KeyWord *</string>
     <string name="opening_hours">Opening Hours *</string>
@@ -107,8 +107,16 @@
     <string name="update_profile">Update Profile</string>
 
 
+    <!--tutorial xml-->
+    <string name="btn_next">Next</string>
+    <string name="btn_skip">Skip</string>
+    <string name="btn_start">START</string>
+
+
     <!--facebook social login xml-->
-    <string name="facebook_app_id">202010250512298</string>
-    <string name="fb_login_protocol_scheme">fb202010250512298</string>
+    <string name="facebook_app_id">1014755342037264</string>
+    <string name="fb_login_protocol_scheme">fb1014755342037264</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
 
 </resources>

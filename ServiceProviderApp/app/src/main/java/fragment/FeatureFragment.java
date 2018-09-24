@@ -1,12 +1,9 @@
 package fragment;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,9 +14,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.vendorprovider.R;
-import com.vendorprovider.ServiceCreationActivity;
-import com.vendorprovider.ViewServicesActivity;
+import com.apt360.vendor.R;
+import com.apt360.vendor.ServiceCreationActivity;
+import com.apt360.vendor.ViewServicesActivity;
 
 public class FeatureFragment extends Fragment {
     public static FeatureFragment newInstance() {
@@ -72,6 +69,7 @@ public class FeatureFragment extends Fragment {
                     View v = parent_linear_layout.getChildAt(i);
                     EditText child2 = v.findViewById(R.id.editFeature);
                     child2.setText(ViewServicesActivity.features.get(i).getFeature());
+                    child2.setError(null);
 
             }
         }
@@ -80,17 +78,46 @@ public class FeatureFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 int flag = 0;
+                EditText child2 = view.findViewById(R.id.editFeature);
+                boolean flagValid = true;
                 SharedPreferences.Editor editor = preferences.edit();
                 final int childCount = parent_linear_layout.getChildCount();
                 for (int i = 0; i < childCount; i++) {
                     View v = parent_linear_layout.getChildAt(i);
-                    EditText child2 = v.findViewById(R.id.editFeature);
-                    editor.putString("feature_" + i, child2.getText().toString());
-                    flag = 1;
+                    child2 = v.findViewById(R.id.editFeature);
+                    for(int j=0;j < i;j++) {
+                        if(preferences.getString("feature_"+j,"").equalsIgnoreCase(child2.getText().toString())){
+                            flag = 0;
+                            flagValid = false;
+                        }else{
+
+                        }
+                    }
+                    if(childCount > 1) {
+                        if (flagValid) {
+                            editor.putString("feature_" + i, child2.getText().toString());
+                            editor.commit();
+                            flag = 1;
+                        } else {
+                            child2.requestFocus();
+                            child2.setError("Can't allow duplicate feature");
+                            return;
+                        }
+                    }else{
+                        if(child2.getText().toString().equalsIgnoreCase("")){
+                            flag=0;
+                        }else{
+                            editor.putString("feature_" + i, child2.getText().toString());
+                            editor.commit();
+                            flag = 1;
+                        }
+                    }
                 }
-                editor.commit();
+
                 if(flag == 0){
-                    Toast.makeText(getContext(), "Please enter feature post!", Toast.LENGTH_SHORT).show();
+                    child2.requestFocus();
+                    child2.setError("Please enter feature cost!");
+                    //Toast.makeText(getContext(), "Please enter feature cost!", Toast.LENGTH_SHORT).show();
                 }else{
                     ServiceCreationActivity.mViewPager.setCurrentItem(4, true);
                 }

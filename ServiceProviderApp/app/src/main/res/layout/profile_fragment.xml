@@ -183,9 +183,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/profile_number"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLines="1"
                     android:text=""
+                    android:maxLength="13"
                     android:textColor="@color/title_color"
                     android:textColorHint="@color/colorDark" />
             </android.support.design.widget.TextInputLayout>

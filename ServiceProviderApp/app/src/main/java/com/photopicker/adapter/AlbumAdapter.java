@@ -11,9 +11,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.photopicker.model.ImageModel;
 import com.photopicker.myinterface.OnAlbum;
-import com.vendorprovider.R;
+import com.apt360.vendor.R;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -70,7 +71,10 @@ public class AlbumAdapter extends ArrayAdapter<ImageModel> {
         ImageModel item = (ImageModel) this.data.get(position);
         holder.txtTitle.setText(item.getName());
         holder.txtPath.setText(item.getPathFolder());
-        Glide.with(this.context).load(new File(item.getPathFile())).placeholder(R.drawable.piclist_icon_default).into(holder.imageItem);
+        Glide.with(this.context).load(new File(item.getPathFile())).apply(new RequestOptions().override(100, 100)
+                .placeholder(R.drawable.piclist_icon_default)
+                .error(R.drawable.piclist_icon_default).centerCrop()
+        ).into(holder.imageItem);
 
         row.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {

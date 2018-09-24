@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,10 +23,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.connection.ConnectionDetector;
-import com.vendorprovider.CategoriesActivity;
-import com.vendorprovider.R;
-import com.vendorprovider.ServiceCreationActivity;
-import com.vendorprovider.ViewServicesActivity;
+import com.kaopiz.kprogresshud.KProgressHUD;
+import com.apt360.vendor.CategoriesActivity;
+import com.apt360.vendor.R;
+import com.apt360.vendor.ServiceCreationActivity;
+import com.apt360.vendor.ViewServicesActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,7 +36,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import kprogresshud.KProgressHUD;
 import services.Services;
 
 public class CategoryFragment extends Fragment {
@@ -170,7 +169,7 @@ public class CategoryFragment extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.d("Error.Response", error.toString());
-                        Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }
         ) {

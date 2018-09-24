@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import com.android.volley.RequestQueue;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
-import com.vendorprovider.R;
+import com.apt360.vendor.R;
 
 import java.util.List;
 

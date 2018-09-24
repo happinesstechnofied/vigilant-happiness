@@ -1,4 +1,4 @@
-package com.vendorprovider.vendorproviderapp;
+package com.apt360.vendor.vendorproviderapp;
 
 import org.junit.Test;
 

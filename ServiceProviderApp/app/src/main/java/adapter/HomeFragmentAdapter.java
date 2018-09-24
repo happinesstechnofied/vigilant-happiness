@@ -4,10 +4,8 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -19,9 +17,8 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.mikhaellopez.circularimageview.CircularImageView;
-import com.vendorprovider.ProfileFragment;
-import com.vendorprovider.R;
-import com.vendorprovider.ViewServicesActivity;
+import com.apt360.vendor.R;
+import com.apt360.vendor.ViewServicesActivity;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -92,7 +89,7 @@ public class HomeFragmentAdapter extends RecyclerView.Adapter<HomeFragmentAdapte
         try {
             ServicesData nData = notifyList.get(position);
             holder.txtCategoryTitle.setText(nData.getTitle());
-            if (nData.getImage().equals("")) {
+            if (nData.getImage() == null || nData.getImage().equals("")) {
                 holder.vendorBanner.setImageResource(R.drawable.ic_placeholder);
             } else {
                 Uri uri = Uri.parse(nData.getImage());
